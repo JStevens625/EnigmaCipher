@@ -39,7 +39,7 @@ public class MainFrame extends JFrame
         //Beginning of TitleFrame
         JLabel label;
         JLabel label1;
-        ImageIcon Cipherpic = new ImageIcon(getClass().getResource("/Picture/CRW.gif"));
+        ImageIcon Cipherpic = new ImageIcon(getClass().getResource("/Picture/enigma.jpg"));
         label = new JLabel("    The Great Enigma Cipher  ");
         label.setFont(new Font("", Font.BOLD, 25));
         label1 = new JLabel(Cipherpic);
