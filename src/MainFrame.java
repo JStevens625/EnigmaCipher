@@ -9,6 +9,8 @@
  * @author Jacob Stevens
  */
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -31,7 +33,6 @@ import javax.swing.JTextArea;
 
 public class MainFrame extends JFrame
 {
-
     JPanel title = new JPanel();
     JPanel verttitle = new JPanel(new GridLayout(1,2));
     ImageIcon IC = new ImageIcon();
@@ -212,11 +213,12 @@ public class MainFrame extends JFrame
         setTitle("Substitution Cipher");
         setSize(700, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+        
         //Aligns window to center of screen. Found it here: http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
+        
         add(title, BorderLayout.NORTH);
         add(TOC, BorderLayout.CENTER);
         add(Inputchoice, BorderLayout.EAST);
@@ -228,8 +230,7 @@ public class MainFrame extends JFrame
 //            music.open(ais);
 //            music.loop(Clip.LOOP_CONTINUOUSLY);
 //        }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
-        
-        
+
         setVisible(true);
         setResizable(false);
     }
