@@ -188,7 +188,7 @@ public class MainFrame extends JFrame
         
         //Full MainFrame
         setTitle("Substitution Cipher");
-        setSize(700, 700);
+        setSize(700, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //Aligns window to center of screen. Found it here: http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
@@ -206,7 +206,8 @@ public class MainFrame extends JFrame
 //            music.open(ais);
 //            music.loop(Clip.LOOP_CONTINUOUSLY);
 //        }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
-
+        
+        
         setVisible(true);
         setResizable(false);
     }
