@@ -13,13 +13,17 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -33,6 +37,25 @@ public class MainFrame extends JFrame
     ImageIcon IC = new ImageIcon();
     Clip music;
     AudioInputStream ais;
+    String userfileinput;
+    String userkeyboardinput;
+    
+    private ActionListener KB = new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            userkeyboardinput = JOptionPane.showInputDialog(null,"What would you like to encode?");
+        }
+    };
+    private ActionListener file = new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            JFileChooser jfc = new JFileChooser();
+            int showup = jfc.showOpenDialog(jfc);
+            userfileinput = jfc.toString();
+        }
+    };
 
     public MainFrame()
     {
@@ -51,24 +74,23 @@ public class MainFrame extends JFrame
         
         //Beginning of Plugboard
         JPanel Inputchoice = new JPanel();
-        String userfileinput;
-        String userkeyboardinput;
-        JLabel j9 = new JLabel();
-        JLabel j10 = new JLabel();
-        JLabel j11 = new JLabel();
-        JLabel j12 = new JLabel();
+        JRadioButton bfile = new JRadioButton("File");
+        JRadioButton bkey = new JRadioButton("Keyboard");
+//        JLabel j9 = new JLabel();
+//        JLabel j10 = new JLabel();
+//        JLabel j11 = new JLabel();
+//        JLabel j12 = new JLabel();
+
         JLabel jl4 = new JLabel("  Enter Plugboard Settings");
         JPanel vert2 = new JPanel();
         vert2.setLayout(new GridLayout(7, 1));
         JTextArea jta = new JTextArea(5,3);
-
-
-//        vert2.add(j9);
-//        vert2.add(j10);
-//        vert2.add(j11);
-//        vert2.add(j12);
+        bkey.addActionListener(KB);
+        bfile.addActionListener(file);
         vert2.add(jl4);
         vert2.add(jta);
+        vert2.add(bfile);
+        vert2.add(bkey);
 
         Inputchoice.add(vert2);
         //End of Plugboard
