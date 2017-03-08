@@ -208,5 +208,6 @@ public class MainFrame extends JFrame
 //        }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
 
         setVisible(true);
+        setResizable(false);
     }
 }
