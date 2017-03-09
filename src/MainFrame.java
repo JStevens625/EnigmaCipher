@@ -10,7 +10,6 @@
  */
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -33,6 +32,7 @@ import javax.swing.JTextArea;
 
 public class MainFrame extends JFrame
 {
+    
     JPanel title = new JPanel();
     JPanel verttitle = new JPanel(new GridLayout(1,2));
     ImageIcon IC = new ImageIcon();
@@ -63,7 +63,7 @@ public class MainFrame extends JFrame
         //Beginning of TitleFrame
         JLabel label;
         JLabel label1;
-        ImageIcon Cipherpic = new ImageIcon(getClass().getResource("/Picture/enigma.jpg"));
+        ImageIcon Cipherpic = new ImageIcon(getClass().getResource("/Picture/enigma.png"));
         label = new JLabel("    The Great Enigma Cipher  ");
         label.setFont(new Font("", Font.BOLD, 25));
         label1 = new JLabel(Cipherpic);
@@ -230,6 +230,37 @@ public class MainFrame extends JFrame
 //            music.open(ais);
 //            music.loop(Clip.LOOP_CONTINUOUSLY);
 //        }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
+
+        // Beginning of Colors
+        title.setBackground(Color.LIGHT_GRAY);
+        verttitle.setBackground(Color.LIGHT_GRAY);
+        Inputchoice.setBackground(Color.LIGHT_GRAY);
+        bfile.setBackground(Color.LIGHT_GRAY);
+        bkey.setBackground(Color.LIGHT_GRAY);
+        vert2.setBackground(Color.LIGHT_GRAY);
+        TOC.setBackground(Color.LIGHT_GRAY);
+        b1.setBackground(Color.LIGHT_GRAY);
+        b2.setBackground(Color.LIGHT_GRAY);
+        b3.setBackground(Color.LIGHT_GRAY);
+        b4.setBackground(Color.LIGHT_GRAY);
+        b5.setBackground(Color.LIGHT_GRAY);
+        b6.setBackground(Color.LIGHT_GRAY);
+        b7.setBackground(Color.LIGHT_GRAY);
+        b8.setBackground(Color.LIGHT_GRAY);
+        b9.setBackground(Color.LIGHT_GRAY);
+        b10.setBackground(Color.LIGHT_GRAY);
+        b11.setBackground(Color.LIGHT_GRAY);
+        b12.setBackground(Color.LIGHT_GRAY);
+        b13.setBackground(Color.LIGHT_GRAY);
+        b14.setBackground(Color.LIGHT_GRAY);
+        b15.setBackground(Color.LIGHT_GRAY);
+        vert.setBackground(Color.LIGHT_GRAY);
+        endebutton.setBackground(Color.LIGHT_GRAY);
+        encode.setBackground(Color.LIGHT_GRAY);
+        decode.setBackground(Color.LIGHT_GRAY);
+        vert1.setBackground(Color.LIGHT_GRAY);
+        jptextwithsubmit.setBackground(Color.LIGHT_GRAY);
+        //End of Colors
 
         setVisible(true);
         setResizable(false);
