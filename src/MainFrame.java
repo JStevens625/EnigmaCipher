@@ -62,6 +62,11 @@ public class MainFrame extends JFrame
             userfileinput = jfc.toString();
         }
     };
+    
+    public void TitleFrame()
+    {
+        
+    }
 
     public MainFrame()
     {
@@ -189,15 +194,16 @@ public class MainFrame extends JFrame
         //Beginning of encodeordecode
         JRadioButton encode = new JRadioButton("Encode");
         JRadioButton decode = new JRadioButton("Decode");
-        JLabel jspace = new JLabel();
+        JLabel jspace1 = new JLabel();
+        JLabel jspace2 = new JLabel();
         JPanel vert1 = new JPanel();
         ButtonGroup bg1 = new ButtonGroup();
-        vert1.setLayout(new GridLayout(3,1,0,100));
+        vert1.setLayout(new GridLayout(4,1,0,40));
         bg1.add(encode);
         bg1.add(decode);
-        vert1.add(jspace);
-        vert1.add(jspace);
+        vert1.add(jspace1);
         vert1.add(encode);
+        vert1.add(jspace2);
         vert1.add(decode);
         endebutton.add(vert1);
         //End of encodeordecode
