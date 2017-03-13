@@ -21,6 +21,7 @@ import javax.sound.sampled.Clip;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,11 +36,15 @@ public class MainFrame extends JFrame
     
     JPanel title = new JPanel();
     JPanel verttitle = new JPanel(new GridLayout(1,2));
+    JPanel jptextwithsubmit = new JPanel();
     ImageIcon IC = new ImageIcon();
     Clip music;
     AudioInputStream ais;
     String userfileinput;
     String userkeyboardinput;
+    JPanel endebutton = new JPanel();
+    JPanel TOC = new JPanel();
+    JPanel Inputchoice = new JPanel();
     
     private ActionListener KB = new ActionListener()
     {
@@ -74,14 +79,8 @@ public class MainFrame extends JFrame
 
         
         //Beginning of Plugboard
-        JPanel Inputchoice = new JPanel();
         JRadioButton bfile = new JRadioButton("File");
         JRadioButton bkey = new JRadioButton("Keyboard");
-//        JLabel j9 = new JLabel();
-//        JLabel j10 = new JLabel();
-//        JLabel j11 = new JLabel();
-//        JLabel j12 = new JLabel();
-
         JLabel jl4 = new JLabel("  Enter Plugboard Settings");
         JPanel vert2 = new JPanel();
         vert2.setLayout(new GridLayout(7, 1));
@@ -98,7 +97,6 @@ public class MainFrame extends JFrame
         
         
         //Beginning of Cipher Wheels
-        JPanel TOC = new JPanel();
         JRadioButton b1 = new JRadioButton("Cipher One");
         JRadioButton b2 = new JRadioButton("Cipher Two");
         JRadioButton b3 = new JRadioButton("Cipher Three");
@@ -114,6 +112,13 @@ public class MainFrame extends JFrame
         JRadioButton b13 = new JRadioButton("Cipher Three");
         JRadioButton b14 = new JRadioButton("Cipher Four");
         JRadioButton b15 = new JRadioButton("Cipher Five");
+        Integer[] nums = new Integer[27];
+        for(int i = 0; i < 27; i++){
+            nums[i] = i + 1;
+        }
+        JComboBox jcb1 = new JComboBox(nums);
+        JComboBox jcb2 = new JComboBox(nums);
+        JComboBox jcb3 = new JComboBox(nums);
         JLabel j1 = new JLabel();
         JLabel j2 = new JLabel();
         JLabel j3 = new JLabel();
@@ -147,15 +152,7 @@ public class MainFrame extends JFrame
         bg5.add(b13);
         bg5.add(b14);
         bg5.add(b15);
-        
-        vert.add(j1);
-        vert.add(j2);
-        vert.add(j3);
-        vert.add(j4);
-        vert.add(j5);
-        vert.add(j6);
-
-        
+                
         vert.add(jl1);
         vert.add(jl2);
         vert.add(jl3);
@@ -181,12 +178,15 @@ public class MainFrame extends JFrame
         vert.add(b10);
         vert.add(b15);
         
+        vert.add(jcb1);
+        vert.add(jcb2);
+        vert.add(jcb3);
+        
         TOC.add(vert);
         //End of Cipher Wheels
         
         
         //Beginning of encodeordecode
-        JPanel endebutton = new JPanel();
         JRadioButton encode = new JRadioButton("Encode");
         JRadioButton decode = new JRadioButton("Decode");
         JLabel jspace = new JLabel();
@@ -196,6 +196,7 @@ public class MainFrame extends JFrame
         bg1.add(encode);
         bg1.add(decode);
         vert1.add(jspace);
+        vert1.add(jspace);
         vert1.add(encode);
         vert1.add(decode);
         endebutton.add(vert1);
@@ -203,7 +204,6 @@ public class MainFrame extends JFrame
 
         
         //Beginning of JButton Coding
-        JPanel jptextwithsubmit = new JPanel();
         JButton jb = new JButton("Begin The Coding Process");
         jptextwithsubmit.add(jb);
         //End of JButton Coding
