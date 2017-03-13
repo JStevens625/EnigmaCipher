@@ -16,8 +16,12 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -124,9 +128,9 @@ public class MainFrame extends JFrame
         JComboBox jcb1 = new JComboBox(nums);
         JComboBox jcb2 = new JComboBox(nums);
         JComboBox jcb3 = new JComboBox(nums);
-        JLabel j1 = new JLabel();
-        JLabel j2 = new JLabel();
-        JLabel j3 = new JLabel();
+        JLabel j1 = new JLabel("Inner Start");
+        JLabel j2 = new JLabel("Middle Start");
+        JLabel j3 = new JLabel("Outer Start");
         JLabel j4 = new JLabel();
         JLabel j5 = new JLabel();
         JLabel j6 = new JLabel();
@@ -138,7 +142,7 @@ public class MainFrame extends JFrame
         ButtonGroup bg4 = new ButtonGroup();
         ButtonGroup bg5 = new ButtonGroup();
         
-        vert.setLayout(new GridLayout(9,3,0,15));
+        vert.setLayout(new GridLayout(9,3,0,10));
         
         bg3.add(b1);
         bg3.add(b2);
@@ -182,6 +186,14 @@ public class MainFrame extends JFrame
         vert.add(b5);
         vert.add(b10);
         vert.add(b15);
+        
+        vert.add(j4);
+        vert.add(j5);
+        vert.add(j6);
+        
+        vert.add(j1);
+        vert.add(j2);
+        vert.add(j3);
         
         vert.add(jcb1);
         vert.add(jcb2);
@@ -231,11 +243,11 @@ public class MainFrame extends JFrame
         add(endebutton, BorderLayout.WEST);
         add(jptextwithsubmit, BorderLayout.SOUTH);
 
-//        try{music = AudioSystem.getClip();
-//            ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/IS.aiff"));
-//            music.open(ais);
-//            music.loop(Clip.LOOP_CONTINUOUSLY);
-//        }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
+        try{music = AudioSystem.getClip();
+            ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/IS.aiff"));
+            music.open(ais);
+            music.loop(Clip.LOOP_CONTINUOUSLY);
+        }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
 
         // Beginning of Colors
         title.setBackground(Color.LIGHT_GRAY);
