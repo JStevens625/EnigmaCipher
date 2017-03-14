@@ -244,7 +244,7 @@ public class MainFrame extends JFrame
         add(jptextwithsubmit, BorderLayout.SOUTH);
 
         try{music = AudioSystem.getClip();
-            ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/IS.aiff"));
+            ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/TTL.wav"));
             music.open(ais);
             music.loop(Clip.LOOP_CONTINUOUSLY);
         }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
