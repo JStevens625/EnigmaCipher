@@ -22,7 +22,6 @@ public class Enigma {
     public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plugboard) {
         int length = in.length();
         in = in.replaceAll(" ", "#");
-
         in = in.toLowerCase();
         int index;
 
@@ -91,6 +90,11 @@ public class Enigma {
             index = keyForInner.indexOf(in.charAt(i));
             index = keyForMid.indexOf(keyForOuter.charAt(index));
             encoded = encoded.replace(in.charAt(i), keyForOuter.charAt(index));
+        }
+        for (int i = 0; i < length; i++) {
+            index = keyForInner.toLowerCase().indexOf(in.charAt(i));
+            index = keyForMid.toLowerCase().indexOf(keyForOuter.toLowerCase().charAt(index));
+            encoded = encoded.replace(in.charAt(i), keyForOuter.toLowerCase().charAt(index));
         }
         return encoded;
     }
