@@ -66,6 +66,13 @@ public class MainFrame extends JFrame
             userfileinput = jfc.toString();
         }
     };
+    private ActionListener submit = new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            
+        }
+    };
     
     public void TitleFrame()
     {
@@ -236,19 +243,21 @@ public class MainFrame extends JFrame
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 
-        
+        //Adding all panels to frame
         add(title, BorderLayout.NORTH);
         add(TOC, BorderLayout.CENTER);
         add(Inputchoice, BorderLayout.EAST);
         add(endebutton, BorderLayout.WEST);
         add(jptextwithsubmit, BorderLayout.SOUTH);
-
+        
+        //Music
         try{music = AudioSystem.getClip();
             ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/TTL.wav"));
             music.open(ais);
             music.loop(Clip.LOOP_CONTINUOUSLY);
         }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
 
+        
         // Beginning of Colors
         title.setBackground(Color.LIGHT_GRAY);
         verttitle.setBackground(Color.LIGHT_GRAY);
@@ -282,5 +291,7 @@ public class MainFrame extends JFrame
 
         setVisible(true);
         setResizable(false);
+        System.out.println("Which buttons are printed?");
+        
     }
 }
