@@ -252,7 +252,7 @@ public class MainFrame extends JFrame
         
         //Music
         try{music = AudioSystem.getClip();
-            ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/TTL.wav"));
+            ais = AudioSystem.getAudioInputStream(getClass().getResource("Music/Chitty Chitty Bang Bang - with lyrics.wav"));
             music.open(ais);
             music.loop(Clip.LOOP_CONTINUOUSLY);
         }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
