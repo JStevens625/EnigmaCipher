@@ -10,8 +10,6 @@ import java.io.Writer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import jdk.nashorn.internal.ir.BreakNode;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,8 +34,8 @@ public class Submit extends JPanel
                     JOptionPane.showMessageDialog(null, "Please Select encode or decode");
                 }
                 else {
-                    String nameit = JOptionPane.showInputDialog("What will the File name be?");
-                    File statText = new File(nameit + ".txt");
+                    String nameit = JOptionPane.showInputDialog("What will the File name be? (Do not include file extensions)");
+                    File statText = new File("src/Coded/" + nameit + ".txt");
                     FileOutputStream is = new FileOutputStream(statText);
                     OutputStreamWriter osw = new OutputStreamWriter(is);
                     Writer writing = new BufferedWriter(osw);
