@@ -7,48 +7,19 @@
  */
 public class Enigma {
 
-    String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
-    String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
-    String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
-    String key_4 = "KPHDEAC#VTWQMYNLXSURZOJFBGI";
-    String key_5 = "NDYGLQICVEZRPTAOXWBMJSUHK#F";
-    StringBuilder keyForOuter;
-    StringBuilder keyForMid;
-    StringBuilder keyForInner;
-    int startPosInner;
-    int startPosMid;
-    int startPosOuter;
-    int index;
-
-    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
-        int length = in.length();
-        in = in.replaceAll(" ", "#");
-        in = in.toLowerCase();
-        startPosInner = start1;
-        startPosMid = start2;
-        startPosOuter = start3;
-        String encoded = in;
-        keyCreation(wheel_I, wheel_M, wheel_O);
-        encoded = plugboard(plugboard, encoded);
-        rotationEncode(length, index, in, encoded);
-        encoded = plugboard(plugboard, encoded);
-        return encoded;
-    }
-
-    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
-        int length = in.length();
-        in = in.replaceAll(" ", "#");
-        in = in.toLowerCase();
-        startPosInner = start1;
-        startPosMid = start2;
-        startPosOuter = start3;
-        String decoded = in;
-        keyCreation(wheel_I, wheel_M, wheel_O);
-        decoded = plugboard(plugboard, decoded);
-        rotationDecode(length, index, in, decoded);
-        decoded = plugboard(plugboard, decoded);
-        return decoded;
-    }/**/
+    private String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
+    private String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
+    private String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
+    private String key_4 = "KPHDEAC#VTWQMYNLXSURZOJFBGI";
+    private String key_5 = "NDYGLQICVEZRPTAOXWBMJSUHK#F";
+    private StringBuilder keyForOuter;
+    private StringBuilder keyForMid;
+    private StringBuilder keyForInner;
+    private int startPosInner;
+    private int startPosMid;
+    private int startPosOuter;
+    private int index;
+    
     public void keyCreation(int wheel_I, int wheel_M, int wheel_O) {
         if (wheel_O == 1) {
             keyForOuter = new StringBuilder(key_1);
@@ -166,6 +137,43 @@ public class Enigma {
         char temporary;
         char temp;
         for (int i = 0; i < length; i++) {
+            count++;
+            for (int j = 0; j < 27; j++) {
+                temp = keyForInner.charAt(0);
+                if (j != 26) {
+                    temporary = keyForInner.charAt(j);
+                    keyForInner.setCharAt(j++, temporary);
+                } else {
+                    keyForInner.setCharAt(j, temp);
+                }
+            }
+            if (count % 27 == 0) {
+                rotate++;
+                for (int j = 0; j < 27; j++) {
+                    temp = keyForMid.charAt(0);
+                    if (j != 26) {
+                        temporary = keyForMid.charAt(j);
+                        keyForMid.setCharAt(j++, temporary);
+                    } else {
+                        keyForMid.setCharAt(j, temp);
+                    }
+                }
+            }
+            if (rotate % 27 == 0) {
+                turn++;
+                for (int j = 0; j < 27; j++) {
+                    temp = keyForOuter.charAt(0);
+                    if (j != 26) {
+                        temporary = keyForOuter.charAt(j);
+                        keyForOuter.setCharAt(j++, temporary);
+                    } else {
+                        keyForOuter.setCharAt(j, temp);
+                    }
+                }
+            }
+        }
+        count = 0;
+        for (int i = 0; i < length; i++) {
             index = keyForOuter.toString().indexOf(in.charAt(i));
             index = keyForMid.toString().indexOf(keyForInner.charAt(index));
             encoded = encoded.replace(in.charAt(i), keyForInner.charAt(index));
@@ -234,4 +242,51 @@ public class Enigma {
         code = encoded.toString();
         return code;
     }
+
+    public StringBuilder startPos(StringBuilder key, int start) {
+        char temp;
+        char temporary;
+        for (int j = 0; j < start; j++) {
+            temp = key.charAt(0);
+            if (j != 26) {
+                temporary = key.charAt(j);
+                key.setCharAt(j++, temporary);
+            } else {
+                key.setCharAt(j, temp);
+            }
+        }
+        return key;
+    }
+    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
+        String[] plugboard = plug.split(" ");
+        int length = in.length();
+        in = in.replaceAll(" ", "#");
+        in = in.toLowerCase();
+        keyForInner = startPos(keyForInner,start1);
+        keyForMid = startPos(keyForMid,start2);
+        keyForOuter = startPos(keyForOuter,start3);
+        String encoded = in;
+        keyCreation(wheel_I, wheel_M, wheel_O);
+        encoded = plugboard(plugboard, encoded);
+        rotationEncode(length, index, in, encoded);
+        encoded = plugboard(plugboard, encoded);
+        return encoded;
+    }
+
+    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
+        String[] plugboard = plug.split(" ");
+        int length = in.length();
+        in = in.replaceAll(" ", "#");
+        in = in.toLowerCase();
+        keyForInner = startPos(keyForInner,start1);
+        keyForMid = startPos(keyForMid,start2);
+        keyForOuter = startPos(keyForOuter,start3);
+        String decoded = in;
+        keyCreation(wheel_I, wheel_M, wheel_O);
+        decoded = plugboard(plugboard, decoded);
+        rotationDecode(length, index, in, decoded);
+        decoded = plugboard(plugboard, decoded);
+        return decoded;
+    }/**/
 }
+/**/
