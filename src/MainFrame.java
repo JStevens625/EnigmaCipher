@@ -20,6 +20,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MainFrame extends JFrame
 {
@@ -29,7 +30,8 @@ public class MainFrame extends JFrame
     
     public MainFrame()
     {
-        
+        //Notice Before programe starts
+        JOptionPane.showMessageDialog(null, "All files will save as text files under the folder of Coded");
         
         //Full MainFrame
         setTitle("Substitution Cipher");
@@ -59,7 +61,6 @@ public class MainFrame extends JFrame
             music.open(ais);
             music.loop(Clip.LOOP_CONTINUOUSLY);
         }catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {}
-
         
         // Beginning of Colors
         tf.setBackground(Color.LIGHT_GRAY);
