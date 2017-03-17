@@ -111,9 +111,29 @@ public class Enigma {
             }
             if (count % 27 == 0) {
                 rotate++;
+                for(int j = 0; j<27; j++){
+                temp = keyForMid.charAt(0);
+                if(j != 26){
+                    temporary = keyForMid.charAt(j);
+                    keyForMid.setCharAt(j++, temporary);
+                }
+                else{
+                    keyForMid.setCharAt(j,temp);
+                }
+            }
             }
             if (rotate % 27 == 0) {
                 turn++;
+                for(int j = 0; j<27; j++){
+                temp = keyForOuter.charAt(0);
+                if(j != 26){
+                    temporary = keyForOuter.charAt(j);
+                    keyForOuter.setCharAt(j++, temporary);
+                }
+                else{
+                    keyForOuter.setCharAt(j,temp);
+                }
+            }
             }
         }
 
