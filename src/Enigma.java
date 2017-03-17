@@ -28,9 +28,9 @@ public class Enigma {
         startPosOuter = start3;
         String encoded = in;
         keyCreation(wheel_I, wheel_M, wheel_O);
-        plugboard(plugboard, encoded);
+        encoded = plugboard(plugboard, encoded);
         rotationEncode(length, index, in, encoded);
-        plugboard(plugboard, encoded);
+        encoded = plugboard(plugboard, encoded);
         return encoded;
     }
     public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
@@ -42,9 +42,9 @@ public class Enigma {
         startPosOuter = start3;
         String decoded = in;
         keyCreation(wheel_I, wheel_M, wheel_O);
-        plugboard(plugboard, decoded);
+        decoded = plugboard(plugboard, decoded);
         rotationDecode(length, index, in, decoded);
-        plugboard(plugboard, decoded);
+        decoded = plugboard(plugboard, decoded);
         return decoded;
     }/**/
     public void keyCreation(int wheel_I, int wheel_M, int wheel_O) {
@@ -205,13 +205,13 @@ public class Enigma {
             }
         }
     }
-    public String plugboard(String[] plugboard, String encode) {
+    public String plugboard(String[] plugboard, String code) {
         int indx;
-        StringBuilder encoded = new StringBuilder(encode);
+        StringBuilder encoded = new StringBuilder(code);
         for(int i = 0; i < plugboard.length; i++){
-            for(int j = 0; j < encode.length(); j++){
+            for(int j = 0; j < code.length(); j++){
                 char[] arr = new char[1];
-                arr[0]=encode.charAt(j);
+                arr[0]=code.charAt(j);
                 CharSequence charseq = new String(arr);
                 if(plugboard[i].contains(charseq)) {
                     indx = plugboard[i].indexOf(charseq.toString());
@@ -226,8 +226,8 @@ public class Enigma {
                 }
             }
         }
-        encode = encoded.toString();
-        return encode;
+        code = encoded.toString();
+        return code;
     }
 }
 /**/
