@@ -10,6 +10,7 @@ import java.io.Writer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -59,17 +60,17 @@ public class Submit extends JPanel
     public Submit()
     {
         JButton jb = new JButton("Begin The Coding Process");
-        jb.addActionListener(new SubmitLlistener(pb, ed));
+        jb.addActionListener(new SubmitListener(pb, ed));
         add(jb);
     }
 }
 
-class SubmitLlistener implements ActionListener
+class SubmitListener implements ActionListener
 {
-
+    
     private Plugboard inputPlugboard;
     private EncodeDecode inputEncodeDecode;
-    public SubmitLlistener(Plugboard inputPlugboard, EncodeDecode inputEncodeDecode)
+    public SubmitListener(Plugboard inputPlugboard, EncodeDecode inputEncodeDecode)
     {
         this.inputPlugboard = inputPlugboard;
         this.inputEncodeDecode = inputEncodeDecode;
