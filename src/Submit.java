@@ -87,7 +87,7 @@ class SubmitListener implements ActionListener
                 System.out.println("Plug Board Text Recieved: " + inputPlugboard.getPlugboardText());
                 System.err.println(inputPlugboard.getPlugboardText());
                 String nameit = JOptionPane.showInputDialog("What will the File name be?");
-                File statText = new File(nameit + ".txt");
+                File statText = new File("src/Coded/" + nameit + ".txt");
                 FileOutputStream is = new FileOutputStream(statText);
                 OutputStreamWriter osw = new OutputStreamWriter(is);
                 Writer writing = new BufferedWriter(osw);
