@@ -6,6 +6,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -13,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,7 +47,14 @@ public class Plugboard extends JPanel
     {
         userkeyboardinput = e;
     }
-
+//    public String read(File file) throws FileNotFoundException{
+//        String string;
+//        StringBuilder str = null;
+//        Scanner scan = new Scanner(file);
+//        str.append(scan.next());
+//        string = str.toString();
+//        return string;
+//    }
     public String getUserfileinput()
     {
         return userfileinput;
@@ -47,7 +63,6 @@ public class Plugboard extends JPanel
     {
         return userkeyboardinput;
     }
-    
     
     
     private ActionListener KB = new ActionListener()
@@ -63,11 +78,14 @@ public class Plugboard extends JPanel
         public void actionPerformed(ActionEvent e)
         {
             File Directory = new File("src/Coded/");
+            File file;
             JFileChooser jfc = new JFileChooser();
             jfc.setCurrentDirectory(Directory);
             int showup = jfc.showOpenDialog(jfc);
-            userfileinput = jfc.toString();
-            System.out.println(getUserfileinput());
+            file = jfc.getSelectedFile();
+            //InputStream is = new FileInputStream(file.toString());
+            String strung = file.toString();
+            System.out.println(strung);
         }
     }; 
     public static void setPlugboard(String plugboard) {
