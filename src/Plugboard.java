@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -46,12 +47,15 @@ public class Plugboard extends JPanel
     {
         JRadioButton bfile = new JRadioButton("File");
         JRadioButton bkey = new JRadioButton("Keyboard");
+        ButtonGroup bg = new ButtonGroup();
         JLabel jl4 = new JLabel("  Enter Plugboard Settings");
         JPanel vert2 = new JPanel();
         vert2.setLayout(new GridLayout(7, 1));
         JTextArea jta = new JTextArea(5,3);
         bkey.addActionListener(KB);
         bfile.addActionListener(file);
+        bg.add(bkey);
+        bg.add(bfile);
         vert2.add(jl4);
         vert2.add(jta);
         vert2.add(bfile);
