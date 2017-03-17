@@ -71,7 +71,6 @@ class SubmitLlistener implements ActionListener
     private EncodeDecode inputEncodeDecode;
     public SubmitLlistener(Plugboard inputPlugboard, EncodeDecode inputEncodeDecode)
     {
-        super();
         this.inputPlugboard = inputPlugboard;
         this.inputEncodeDecode = inputEncodeDecode;
     }
@@ -84,6 +83,7 @@ class SubmitLlistener implements ActionListener
                 JOptionPane.showMessageDialog(null, "Please Select encode or decode");
             }
             else {
+                System.out.println("Plug Board Text Recieved: " + inputPlugboard.getPlugboardText());
                 System.err.println(inputPlugboard.getPlugboardText());
                 String nameit = JOptionPane.showInputDialog("What will the File name be?");
                 File statText = new File(nameit + ".txt");

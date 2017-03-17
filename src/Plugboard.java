@@ -26,7 +26,7 @@ public class Plugboard extends JPanel
 {
     String userfileinput;
     String userkeyboardinput;
-    private String plugboardstringin;
+    private static String plugboardstringin;
     JTextArea jta = new JTextArea(5,3);
 
     private ActionListener KB = new ActionListener()
@@ -44,29 +44,10 @@ public class Plugboard extends JPanel
             int showup = jfc.showOpenDialog(jfc);
             userfileinput = jfc.toString();
         }
-    };
-    private KeyListener kl = new KeyListener()
-    {
-        @Override
-        public void keyTyped(KeyEvent ke)
-        {
-            plugboardstringin += ke.getKeyChar();
-            System.out.println("Updated plugboard String: " + plugboardstringin);
-        }
-
-        @Override
-        public void keyPressed(KeyEvent ke)
-        {
-            System.out.println("Key Pressed: " + ke.getKeyChar());
-        }
-
-        @Override
-        public void keyReleased(KeyEvent ke)
-        {
-            System.out.println("Key Released: " + ke.getKeyChar());
-        }
-    };
-
+    }; 
+    public static void setPlugboard(String plugboard) {
+      plugboardstringin = plugboard;
+    }
     public String getPlugboardText() {
       return plugboardstringin;
     }
@@ -80,7 +61,7 @@ public class Plugboard extends JPanel
         vert2.setLayout(new GridLayout(7, 1));
         bkey.addActionListener(KB);
         bfile.addActionListener(file);
-        jta.addKeyListener(kl);
+        jta.addKeyListener(new kl());
         bg.add(bkey);
         bg.add(bfile);
         vert2.add(jl4);
@@ -91,5 +72,25 @@ public class Plugboard extends JPanel
         vert2.setBackground(Color.LIGHT_GRAY);
         bfile.setBackground(Color.LIGHT_GRAY);
         bkey.setBackground(Color.LIGHT_GRAY);
+    }
+}
+
+class kl implements KeyListener {
+    @Override
+    public void keyTyped(KeyEvent ke)
+    {
+        System.out.println("Key Typed: " + ke.getKeyChar());
+    }
+
+    @Override
+    public void keyPressed(KeyEvent ke)
+    {
+        System.out.println("Key Pressed: " + ke.getKeyChar());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke)
+    {
+        Plugboard.setPlugboard(((JTextArea)ke.getSource()).getText());
     }
 }
