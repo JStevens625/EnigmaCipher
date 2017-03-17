@@ -7,20 +7,21 @@
  */
 public class Enigma {
 
-    String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
-    String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
-    String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
-    String key_4 = "KPHDEAC#VTWQMYNLXSURZOJFBGI";
-    String key_5 = "NDYGLQICVEZRPTAOXWBMJSUHK#F";
-    StringBuilder keyForOuter;
-    StringBuilder keyForMid;
-    StringBuilder keyForInner;
-    int startPosInner;
-    int startPosMid;
-    int startPosOuter;
-    int index;
+    private String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
+    private String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
+    private String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
+    private String key_4 = "KPHDEAC#VTWQMYNLXSURZOJFBGI";
+    private String key_5 = "NDYGLQICVEZRPTAOXWBMJSUHK#F";
+    private StringBuilder keyForOuter;
+    private StringBuilder keyForMid;
+    private StringBuilder keyForInner;
+    private int startPosInner;
+    private int startPosMid;
+    private int startPosOuter;
+    private int index;
 
-    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
+    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
+        String[] plugboard = plug.split(" ");
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
@@ -35,7 +36,8 @@ public class Enigma {
         return encoded;
     }
 
-    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
+    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
+        String[] plugboard = plug.split(" ");
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
@@ -235,3 +237,4 @@ public class Enigma {
         return code;
     }
 }
+/**/

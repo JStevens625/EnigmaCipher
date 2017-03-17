@@ -10,7 +10,6 @@ import java.io.Writer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import jdk.nashorn.internal.ir.BreakNode;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -25,41 +24,56 @@ public class Submit extends JPanel
 {
 
     EncodeDecode ed = new EncodeDecode();
+    Plugboard pb = new Plugboard();
 
-    private ActionListener submit = new ActionListener()
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            try {
-                //Found solution to save file from http://stackoverflow.com/questions/2885173/how-do-i-create-a-file-and-write-to-it-in-java
-                if (ed.getSelect() == 0) {
-                    JOptionPane.showMessageDialog(null, "Please Select encode or decode");
-                }
-                else {
-                    String nameit = JOptionPane.showInputDialog("What will the File name be?");
-                    File statText = new File(nameit + ".txt");
-                    FileOutputStream is = new FileOutputStream(statText);
-                    OutputStreamWriter osw = new OutputStreamWriter(is);
-                    Writer writing = new BufferedWriter(osw);
-                    if (ed.getSelect() == 1) {
-                        writing.write("");
-                    }
-                    else if (ed.getSelect() == 2) {
-                        writing.write("");
-                    }
-                    writing.close();
-                    JOptionPane.showMessageDialog(null, "Your message has encoded/decoded");
-
-                }
-            } catch (IOException f) {
-            }
-        }
-    };
-
+   
     public Submit()
     {
         JButton jb = new JButton("Begin The Coding Process");
-        jb.addActionListener(submit);
+        jb.addActionListener(new SubmitListener(pb, ed));
         add(jb);
+    }
+}
+
+class SubmitListener implements ActionListener
+{
+    CipherWheels cw = new CipherWheels();
+    Enigma en = new Enigma();
+    private Plugboard inputPlugboard;
+    private EncodeDecode inputEncodeDecode;
+    public SubmitListener(Plugboard inputPlugboard, EncodeDecode inputEncodeDecode)
+    {
+        this.inputPlugboard = inputPlugboard;
+        this.inputEncodeDecode = inputEncodeDecode;
+    }
+
+    public void actionPerformed(ActionEvent e)
+    {
+        try {
+            //Found solution to save file from http://stackoverflow.com/questions/2885173/how-do-i-create-a-file-and-write-to-it-in-java
+            if (inputEncodeDecode.getSelect() == 0) {
+                JOptionPane.showMessageDialog(null, "Please Select encode or decode");
+            }
+            else {
+                System.out.println("Plug Board Text Recieved: " + inputPlugboard.getPlugboardText());
+                System.err.println(inputPlugboard.getPlugboardText());
+                String nameit = JOptionPane.showInputDialog("What will the File name be?");
+                File statText = new File("src/Coded/" + nameit + ".txt");
+                FileOutputStream is = new FileOutputStream(statText);
+                OutputStreamWriter osw = new OutputStreamWriter(is);
+                Writer writing = new BufferedWriter(osw);
+                if (inputEncodeDecode.getSelect() == 1) {
+                    
+                    writing.write("");
+                }
+                else if (inputEncodeDecode.getSelect() == 2) {
+                    writing.write("");
+                }
+                writing.close();
+                JOptionPane.showMessageDialog(null, "Your message has encoded/decoded");
+
+            }
+        } catch (IOException f) {
+        }
     }
 }
