@@ -20,7 +20,8 @@ public class Enigma {
     private int startPosOuter;
     private int index;
 
-    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
+    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
+        String[] plugboard = plug.split(" ");
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
@@ -35,7 +36,8 @@ public class Enigma {
         return encoded;
     }
 
-    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String[] plugboard) {
+    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
+        String[] plugboard = plug.split(" ");
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
