@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -24,11 +25,31 @@ import javax.swing.JTextArea;
  */
 public class Plugboard extends JPanel
 {
-    String userfileinput;
-    String userkeyboardinput;
+    private String userfileinput;
+    private String userkeyboardinput;
     private static String plugboardstringin;
     JTextArea jta = new JTextArea(5,3);
 
+    public void setUserfileinput(String e)
+    {
+        userfileinput = e;
+    }
+    public void setUserkeyboardinput(String e)
+    {
+        userkeyboardinput = e;
+    }
+
+    public String getUserfileinput()
+    {
+        return userfileinput;
+    }
+    public String getUserkeyboardinput()
+    {
+        return userkeyboardinput;
+    }
+    
+    
+    
     private ActionListener KB = new ActionListener()
     {
         public void actionPerformed(ActionEvent e)
@@ -38,11 +59,15 @@ public class Plugboard extends JPanel
     };
     private ActionListener file = new ActionListener()
     {
+        //Found how to set default directory from here: http://stackoverflow.com/questions/5721504/jfilechooser-set-directory-to-a-path-in-a-file
         public void actionPerformed(ActionEvent e)
         {
+            File Directory = new File("src/Coded/");
             JFileChooser jfc = new JFileChooser();
+            jfc.setCurrentDirectory(Directory);
             int showup = jfc.showOpenDialog(jfc);
             userfileinput = jfc.toString();
+            System.out.println(getUserfileinput());
         }
     }; 
     public static void setPlugboard(String plugboard) {
