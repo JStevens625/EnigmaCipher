@@ -15,11 +15,8 @@ public class Enigma {
     private StringBuilder keyForOuter;
     private StringBuilder keyForMid;
     private StringBuilder keyForInner;
-    private int startPosInner;
-    private int startPosMid;
-    private int startPosOuter;
     private int index;
-    
+
     public void keyCreation(int wheel_I, int wheel_M, int wheel_O) {
         if (wheel_O == 1) {
             keyForOuter = new StringBuilder(key_1);
@@ -86,6 +83,8 @@ public class Enigma {
         int turn = 0;
         char temporary;
         char temp;
+        String part1;
+        String part2;
         for (int i = 0; i < length; i++) {
             index = keyForInner.toString().indexOf(in.charAt(i));
             index = keyForMid.toString().indexOf(keyForOuter.charAt(index));
@@ -94,37 +93,27 @@ public class Enigma {
             index = keyForMid.toString().toLowerCase().indexOf(keyForOuter.toString().toLowerCase().charAt(index));
             encoded = encoded.replace(in.charAt(i), keyForOuter.toString().toLowerCase().charAt(index));
             count++;
-            for (int j = 0; j < 27; j++) {
-                temp = keyForInner.charAt(0);
-                if (j != 26) {
-                    temporary = keyForInner.charAt(j);
-                    keyForInner.setCharAt(j++, temporary);
-                } else {
-                    keyForInner.setCharAt(j, temp);
-                }
+            for (int j = 0; j < 26; j++) {
+                part1 = keyForInner.substring(1, 26);
+                part2 = keyForInner.substring(0, 1);
+                keyForInner = new StringBuilder(part1 + part2);
+                System.out.println(keyForInner);
             }
             if (count % 27 == 0) {
                 rotate++;
-                for (int j = 0; j < 27; j++) {
-                    temp = keyForMid.charAt(0);
-                    if (j != 26) {
-                        temporary = keyForMid.charAt(j);
-                        keyForMid.setCharAt(j++, temporary);
-                    } else {
-                        keyForMid.setCharAt(j, temp);
-                    }
+                for (int j = 0; j < 26; j++) {
+                    part1 = keyForMid.substring(1, 26);
+                    part2 = keyForMid.substring(0, 1);
+                    keyForMid = new StringBuilder(part1 + part2);
+                    System.out.println(keyForMid);
                 }
             }
             if (rotate % 27 == 0) {
-                turn++;
-                for (int j = 0; j < 27; j++) {
-                    temp = keyForOuter.charAt(0);
-                    if (j != 26) {
-                        temporary = keyForOuter.charAt(j);
-                        keyForOuter.setCharAt(j++, temporary);
-                    } else {
-                        keyForOuter.setCharAt(j, temp);
-                    }
+                for (int j = 0; j < 26; j++) {
+                    part1 = keyForOuter.substring(1, 26);
+                    part2 = keyForOuter.substring(0, 1);
+                    keyForOuter = new StringBuilder(part1 + part2);
+                    System.out.println(keyForOuter);
                 }
             }
         }
@@ -136,39 +125,31 @@ public class Enigma {
         int turn = 0;
         char temporary;
         char temp;
+        String part1;
+        String part2;
         for (int i = 0; i < length; i++) {
             count++;
-            for (int j = 0; j < 27; j++) {
-                temp = keyForInner.charAt(0);
-                if (j != 26) {
-                    temporary = keyForInner.charAt(j);
-                    keyForInner.setCharAt(j++, temporary);
-                } else {
-                    keyForInner.setCharAt(j, temp);
-                }
+            for (int j = 0; j < 26; j++) {
+                part1 = keyForInner.substring(1, 26);
+                part2 = keyForInner.substring(0, 1);
+                keyForInner = new StringBuilder(part1 + part2);
+                System.out.println(keyForInner);
             }
             if (count % 27 == 0) {
                 rotate++;
-                for (int j = 0; j < 27; j++) {
-                    temp = keyForMid.charAt(0);
-                    if (j != 26) {
-                        temporary = keyForMid.charAt(j);
-                        keyForMid.setCharAt(j++, temporary);
-                    } else {
-                        keyForMid.setCharAt(j, temp);
-                    }
+                for (int j = 0; j < 26; j++) {
+                    part1 = keyForMid.substring(1, 26);
+                    part2 = keyForMid.substring(0, 1);
+                    keyForMid = new StringBuilder(part1 + part2);
+                    System.out.println(keyForMid);
                 }
             }
             if (rotate % 27 == 0) {
-                turn++;
-                for (int j = 0; j < 27; j++) {
-                    temp = keyForOuter.charAt(0);
-                    if (j != 26) {
-                        temporary = keyForOuter.charAt(j);
-                        keyForOuter.setCharAt(j++, temporary);
-                    } else {
-                        keyForOuter.setCharAt(j, temp);
-                    }
+                for (int j = 0; j < 26; j++) {
+                    part1 = keyForOuter.substring(1, 26);
+                    part2 = keyForOuter.substring(0, 1);
+                    keyForOuter = new StringBuilder(part1 + part2);
+                    System.out.println(keyForOuter);
                 }
             }
         }
@@ -182,37 +163,27 @@ public class Enigma {
             encoded = encoded.replace(in.charAt(i), keyForInner.toString().toLowerCase().charAt(index));
             count++;
             if (i < length - 1) {
-                temp = keyForInner.charAt(26);
-                for (int j = 26; j >= 0; j--) {
-                    if (j != 0) {
-                        temporary = keyForInner.charAt(j--);
-                        keyForInner.setCharAt(j, temporary);
-                    } else {
-                        keyForInner.setCharAt(j, temp);
-                    }
+                for (int j = 0; j < 26; j++) {
+                    part1 = keyForInner.substring(1, 26);
+                    part2 = keyForInner.substring(0, 1);
+                    keyForInner = new StringBuilder(part1 + part2);
+                    System.out.println(keyForInner);
                 }
                 if (count % 27 == 0) {
                     rotate++;
-                    temp = keyForMid.charAt(26);
-                    for (int j = 26; j >= 0; j--) {
-                        if (j != 0) {
-                            temporary = keyForMid.charAt(j--);
-                            keyForMid.setCharAt(j, temporary);
-                        } else {
-                            keyForMid.setCharAt(j, temp);
-                        }
+                    for (int j = 0; j < 26; j++) {
+                        part1 = keyForMid.substring(1, 26);
+                        part2 = keyForMid.substring(0, 1);
+                        keyForMid = new StringBuilder(part1 + part2);
+                        System.out.println(keyForMid);
                     }
                 }
                 if (rotate % 27 == 0) {
-                    turn++;
-                    temp = keyForOuter.charAt(26);
-                    for (int j = 26; j >= 0; j--) {
-                        if (j != 0) {
-                            temporary = keyForOuter.charAt(j--);
-                            keyForOuter.setCharAt(j, temporary);
-                        } else {
-                            keyForOuter.setCharAt(j, temp);
-                        }
+                    for (int j = 0; j < 26; j++) {
+                        part1 = keyForOuter.substring(1, 26);
+                        part2 = keyForOuter.substring(0, 1);
+                        keyForOuter = new StringBuilder(part1 + part2);
+                        System.out.println(keyForOuter);
                     }
                 }
             }
@@ -244,27 +215,25 @@ public class Enigma {
     }
 
     public StringBuilder startPos(StringBuilder key, int start) {
-        char temp;
-        char temporary;
-        for (int j = 0; j < start; j++) {
-            temp = key.charAt(0);
-            if (j != 26) {
-                temporary = key.charAt(j);
-                key.setCharAt(j++, temporary);
-            } else {
-                key.setCharAt(j, temp);
-            }
+        String part1;
+        String part2;
+        for (int j = 0; j < 26; j++) {
+            part1 = key.substring(start, 26);
+            part2 = key.substring(0,start);
+            key = new StringBuilder(part1+part2);
+            System.out.println(key.toString());
         }
         return key;
     }
+
     public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
         String[] plugboard = plug.split(" ");
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
-        keyForInner = startPos(keyForInner,start1);
-        keyForMid = startPos(keyForMid,start2);
-        keyForOuter = startPos(keyForOuter,start3);
+        keyForInner = startPos(keyForInner, start1);
+        keyForMid = startPos(keyForMid, start2);
+        keyForOuter = startPos(keyForOuter, start3);
         String encoded = in;
         keyCreation(wheel_I, wheel_M, wheel_O);
         encoded = plugboard(plugboard, encoded);
@@ -278,9 +247,9 @@ public class Enigma {
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
-        keyForInner = startPos(keyForInner,start1);
-        keyForMid = startPos(keyForMid,start2);
-        keyForOuter = startPos(keyForOuter,start3);
+        keyForInner = startPos(keyForInner, start1);
+        keyForMid = startPos(keyForMid, start2);
+        keyForOuter = startPos(keyForOuter, start3);
         String decoded = in;
         keyCreation(wheel_I, wheel_M, wheel_O);
         decoded = plugboard(plugboard, decoded);
