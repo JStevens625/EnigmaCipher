@@ -10,9 +10,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -135,6 +132,7 @@ public class Plugboard extends JPanel
     };
     public static void setPlugboard(String plugboard) {
       plugboardstringin = plugboard;
+        System.out.println(plugboardstringin);
     }
     public String getPlugboardText() {
       return plugboardstringin;

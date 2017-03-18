@@ -260,8 +260,13 @@ public class Enigma {
 
     public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
         String[] plugboard = plug.split(" ");
-        int length = in.length();
-        in = in.replaceAll(" ", "#");
+        int length = 0;
+        if(in == null){
+            System.out.println("ahhhhhhhhhh");
+        }else{
+        length = in.length();
+        }
+        in = in.replaceAll("#", " ");
         in = in.toLowerCase();
         keyForInner = startPos(keyForInner, start1);
         keyForMid = startPos(keyForMid, start2);

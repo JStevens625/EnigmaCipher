@@ -37,8 +37,8 @@ public class Submit extends JPanel
 
 class SubmitListener implements ActionListener
 {
-    String finalencode;
-    String finaldecode;
+    String finalencode = "";
+    String finaldecode = "";
     CipherWheels cw = new CipherWheels();
     Enigma en = new Enigma();
     Plugboard pb = new Plugboard();
@@ -71,7 +71,7 @@ class SubmitListener implements ActionListener
                 Writer writing = new BufferedWriter(osw);
                 if (inputEncodeDecode.getSelect() == 1) {
                     if (pb.getchoice() == 1) {
-                        finalencode = en.encode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
+                        finalencode = en.encode(pb.getPlugboardText(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getUserfileinput());
                         writing.write(finalencode);
                         System.out.println(finalencode);
                     }
