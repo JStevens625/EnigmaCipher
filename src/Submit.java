@@ -73,20 +73,24 @@ class SubmitListener implements ActionListener
                     if (pb.getchoice() == 1) {
                         finalencode = en.encode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finalencode);
+                        System.out.println(finalencode);
                     }
                     else {
                         finalencode = en.encode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finalencode);
+                        System.out.println(finalencode);
                     }
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
                     if (pb.getchoice() == 1) {
                         finalencode = en.decode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finaldecode);
+                        System.out.println(finaldecode);
                     }
                     else {
                         finalencode = en.decode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finaldecode);
+                        System.out.println(finaldecode);
                     }
                 }
                 writing.close();
