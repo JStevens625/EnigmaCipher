@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -63,8 +64,8 @@ public class Plugboard extends JPanel
     {
         return userkeyboardinput;
     }
-    
-    
+
+
     private ActionListener KB = new ActionListener()
     {
         public void actionPerformed(ActionEvent e)
@@ -83,11 +84,24 @@ public class Plugboard extends JPanel
             jfc.setCurrentDirectory(Directory);
             int showup = jfc.showOpenDialog(jfc);
             file = jfc.getSelectedFile();
-            //InputStream is = new FileInputStream(file.toString());
-            String strung = file.toString();
-            System.out.println(strung);
+            InputStream is;
+            String input = new String();
+            try {
+                is = new FileInputStream(file);
+                try {
+                    int c;
+                    while((c = is.read())!= -1) {
+                        input += (char) c;
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println(input);
         }
-    }; 
+    };
     public static void setPlugboard(String plugboard) {
       plugboardstringin = plugboard;
     }
