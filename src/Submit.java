@@ -71,21 +71,21 @@ class SubmitListener implements ActionListener
                 Writer writing = new BufferedWriter(osw);
                 if (inputEncodeDecode.getSelect() == 1) {
                     if (pb.getchoice() == 1) {
-                        finalencode = en.encode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        finalencode = en.encode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finalencode);
                     }
                     else {
-                        finalencode = en.encode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        finalencode = en.encode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finalencode);
                     }
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
                     if (pb.getchoice() == 1) {
-                        finalencode = en.decode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        finalencode = en.decode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finaldecode);
                     }
                     else {
-                        finalencode = en.decode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        finalencode = en.decode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
                         writing.write(finaldecode);
                     }
                 }
