@@ -26,7 +26,7 @@ public class Submit extends JPanel
     EncodeDecode ed = new EncodeDecode();
     Plugboard pb = new Plugboard();
 
-   
+
     public Submit()
     {
         JButton jb = new JButton("Begin The Coding Process");
@@ -55,6 +55,9 @@ class SubmitListener implements ActionListener
                 JOptionPane.showMessageDialog(null, "Please Select encode or decode");
             }
             else {
+                System.out.println("Box 1: " + cw.getComboBoxValue(1));
+                System.out.println("Box 2: " + cw.getComboBoxValue(2));
+                System.out.println("Box 3: " + cw.getComboBoxValue(3));
                 System.out.println("Plug Board Text Recieved: " + inputPlugboard.getPlugboardText());
                 System.err.println(inputPlugboard.getPlugboardText());
                 String nameit = JOptionPane.showInputDialog("What will the File name be?");
@@ -63,7 +66,7 @@ class SubmitListener implements ActionListener
                 OutputStreamWriter osw = new OutputStreamWriter(is);
                 Writer writing = new BufferedWriter(osw);
                 if (inputEncodeDecode.getSelect() == 1) {
-                    
+
                     writing.write("");
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
