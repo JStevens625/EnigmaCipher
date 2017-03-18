@@ -63,6 +63,30 @@ public class CipherWheels extends JPanel
     //     }
     //
     // };
+    public ActionListener cipher1 = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+    };
+    public ActionListener cipher2 = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+    };
+    public ActionListener cipher3 = new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent ae)
+        {
+            throw new UnsupportedOperationException("Not supported yet."); 
+        }
+    };
     public CipherWheels(){
         JRadioButton b1 = new JRadioButton("Cipher One");
         JRadioButton b2 = new JRadioButton("Cipher Two");
