@@ -208,6 +208,17 @@ public class Enigma {
                         }
                     }
                 }
+                charseq = new String(arr);
+                if (plugboard[i].toLowerCase().contains(charseq)) {
+                    indx = plugboard[i].toLowerCase().indexOf(charseq.toString());
+                    if (indx == 0) {
+                        encoded.setCharAt(i, plugboard[i].charAt(1));
+                    } else {
+                        if (indx == 1) {
+                            encoded.setCharAt(i, plugboard[i].charAt(0));
+                        }
+                    }
+                }
             }
         }
         code = encoded.toString();
