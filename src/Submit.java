@@ -41,6 +41,7 @@ class SubmitListener implements ActionListener
     String finaldecode;
     CipherWheels cw = new CipherWheels();
     Enigma en = new Enigma();
+    Plugboard pb = new Plugboard();
     private Plugboard inputPlugboard;
     private EncodeDecode inputEncodeDecode;
     public SubmitListener(Plugboard inputPlugboard, EncodeDecode inputEncodeDecode)
@@ -60,6 +61,7 @@ class SubmitListener implements ActionListener
                 System.out.println("Box 1: " + cw.getComboBoxValue(1));
                 System.out.println("Box 2: " + cw.getComboBoxValue(2));
                 System.out.println("Box 3: " + cw.getComboBoxValue(3));
+                System.out.println("Cipher 1 Selected Value: " + cw.getChipher(1));
                 System.out.println("Plug Board Text Recieved: " + inputPlugboard.getPlugboardText());
                 System.err.println(inputPlugboard.getPlugboardText());
                 String nameit = JOptionPane.showInputDialog("What will the File name be?");
@@ -68,12 +70,24 @@ class SubmitListener implements ActionListener
                 OutputStreamWriter osw = new OutputStreamWriter(is);
                 Writer writing = new BufferedWriter(osw);
                 if (inputEncodeDecode.getSelect() == 1) {
-                    finalencode = en.encode(nameit, cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0, nameit);
-                    writing.write(finalencode);
+                    if (pb.getchoice() == 1) {
+                        finalencode = en.encode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        writing.write(finalencode);
+                    }
+                    else {
+                        finalencode = en.encode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        writing.write(finalencode);
+                    }
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
-                    finaldecode = en.decode(nameit, 0, 0, 0, 0, 0, 0, nameit);
-                    writing.write(finaldecode);
+                    if (pb.getchoice() == 1) {
+                        finalencode = en.decode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        writing.write(finaldecode);
+                    }
+                    else {
+                        finalencode = en.decode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0,pb.getPlugboardText());
+                        writing.write(finaldecode);
+                    }
                 }
                 writing.close();
                 JOptionPane.showMessageDialog(null, "Your message has encoded/decoded");

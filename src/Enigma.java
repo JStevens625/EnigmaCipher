@@ -15,9 +15,6 @@ public class Enigma {
     private StringBuilder keyForOuter;
     private StringBuilder keyForMid;
     private StringBuilder keyForInner;
-    private int startPosInner;
-    private int startPosMid;
-    private int startPosOuter;
     private int index;
     
     public void keyCreation(int wheel_I, int wheel_M, int wheel_O) {
@@ -287,6 +284,5 @@ public class Enigma {
         rotationDecode(length, index, in, decoded);
         decoded = plugboard(plugboard, decoded);
         return decoded;
-    }/**/
+    }
 }
-/**/

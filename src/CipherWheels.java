@@ -27,6 +27,43 @@ public class CipherWheels extends JPanel
     private static int value1;
     private static int value2;
     private static int value3;
+    private static int selectedCipher1;
+    private static int selectedCipher2;
+    private static int selectedCipher3;
+
+    public static void setChipher(int cipher, int value)
+    {
+        switch(cipher) {
+            case 1:
+                selectedCipher1 = value;
+                break;
+            case 2:
+                selectedCipher2 = value;
+                break;
+            case 3:
+                selectedCipher3 = value;
+                break;
+            default:
+                System.err.println("Invalid Value Input: " + cipher);
+                break;
+        }
+    }
+
+    public int getChipher(int cipher) {
+        switch(cipher) {
+            case 1:
+                return selectedCipher1;
+            case 2:
+                return selectedCipher2;
+            case 3:
+                return selectedCipher3;
+            default:
+                System.err.println("Invalid Value Input: " + cipher);
+                return 0;
+        }
+    }
+
+
 
     public static void setSelectedBoxValue(int comboBox, int value) {
       switch (comboBox) {
@@ -68,7 +105,7 @@ public class CipherWheels extends JPanel
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-            throw new UnsupportedOperationException("Not supported yet.");
+
         }
     };
     public ActionListener cipher2 = new ActionListener()
@@ -76,7 +113,7 @@ public class CipherWheels extends JPanel
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-            throw new UnsupportedOperationException("Not supported yet."); 
+
         }
     };
     public ActionListener cipher3 = new ActionListener()
@@ -84,25 +121,40 @@ public class CipherWheels extends JPanel
         @Override
         public void actionPerformed(ActionEvent ae)
         {
-            throw new UnsupportedOperationException("Not supported yet."); 
+
         }
     };
     public CipherWheels(){
-        JRadioButton b1 = new JRadioButton("Cipher One");
-        JRadioButton b2 = new JRadioButton("Cipher Two");
-        JRadioButton b3 = new JRadioButton("Cipher Three");
-        JRadioButton b4 = new JRadioButton("Cipher Four");
-        JRadioButton b5 = new JRadioButton("Cipher Five");
-        JRadioButton b6 = new JRadioButton("Cipher One");
-        JRadioButton b7 = new JRadioButton("Cipher Two");
-        JRadioButton b8 = new JRadioButton("Cipher Three");
-        JRadioButton b9 = new JRadioButton("Cipher Four");
-        JRadioButton b10 = new JRadioButton("Cipher Five");
-        JRadioButton b11 = new JRadioButton("Cipher One");
-        JRadioButton b12 = new JRadioButton("Cipher Two");
-        JRadioButton b13 = new JRadioButton("Cipher Three");
-        JRadioButton b14 = new JRadioButton("Cipher Four");
-        JRadioButton b15 = new JRadioButton("Cipher Five");
+        JRadioButton b1 = new JRadioButton("1");
+        b1.addActionListener(new CipherPicker(1));
+        JRadioButton b2 = new JRadioButton("2");
+        b2.addActionListener(new CipherPicker(1));
+        JRadioButton b3 = new JRadioButton("3");
+        b3.addActionListener(new CipherPicker(1));
+        JRadioButton b4 = new JRadioButton("4");
+        b4.addActionListener(new CipherPicker(1));
+        JRadioButton b5 = new JRadioButton("5");
+        b5.addActionListener(new CipherPicker(1));
+        JRadioButton b6 = new JRadioButton("1");
+        b6.addActionListener(new CipherPicker(2));
+        JRadioButton b7 = new JRadioButton("2");
+        b7.addActionListener(new CipherPicker(2));
+        JRadioButton b8 = new JRadioButton("3");
+        b8.addActionListener(new CipherPicker(2));
+        JRadioButton b9 = new JRadioButton("4");
+        b9.addActionListener(new CipherPicker(2));
+        JRadioButton b10 = new JRadioButton("5");
+        b10.addActionListener(new CipherPicker(2));
+        JRadioButton b11 = new JRadioButton("1");
+        b11.addActionListener(new CipherPicker(3));
+        JRadioButton b12 = new JRadioButton("2");
+        b12.addActionListener(new CipherPicker(3));
+        JRadioButton b13 = new JRadioButton("3");
+        b13.addActionListener(new CipherPicker(3));
+        JRadioButton b14 = new JRadioButton("4");
+        b14.addActionListener(new CipherPicker(3));
+        JRadioButton b15 = new JRadioButton("5");
+        b15.addActionListener(new CipherPicker(3));
         Integer[] nums = new Integer[27];
         for(int i = 0; i < 27; i++)
         {
@@ -216,4 +268,17 @@ class ComboListener implements ActionListener {
   public void actionPerformed(ActionEvent ae) {
     CipherWheels.setSelectedBoxValue(number, (int)((JComboBox) ae.getSource()).getSelectedItem());
   }
+}
+class CipherPicker implements ActionListener{
+
+    private int selectedCipher;
+    public CipherPicker(int buttonnum)
+    {
+        selectedCipher = buttonnum;
+    }
+    @Override
+    public void actionPerformed(ActionEvent ae)
+    {
+        CipherWheels.setChipher(selectedCipher, Integer.parseInt(((JRadioButton) ae.getSource()).getText()));
+    }
 }

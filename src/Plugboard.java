@@ -35,27 +35,30 @@ import javax.swing.JTextArea;
  */
 public class Plugboard extends JPanel
 {
-    private String userfileinput;
-    private String userkeyboardinput;
+    JRadioButton bfile = new JRadioButton("File");
+    JRadioButton bkey = new JRadioButton("Keyboard");
+    private static String userfileinput;
+    private static String userkeyboardinput;
     private static String plugboardstringin;
+    private static String inputMessage;
+    private static int inputchoice = 0;
     JTextArea jta = new JTextArea(5,3);
 
-    public void setUserfileinput(String e)
+    public static void setUserfileinput(String e)
     {
         userfileinput = e;
     }
-    public void setUserkeyboardinput(String e)
+    public static void setUserkeyboardinput(String e)
     {
         userkeyboardinput = e;
     }
-//    public String read(File file) throws FileNotFoundException{
-//        String string;
-//        StringBuilder str = null;
-//        Scanner scan = new Scanner(file);
-//        str.append(scan.next());
-//        string = str.toString();
-//        return string;
-//    }
+
+    public static void setInputMessage(String e)
+    {
+        inputMessage = e;
+    }
+    
+
     public String getUserfileinput()
     {
         return userfileinput;
@@ -64,7 +67,34 @@ public class Plugboard extends JPanel
     {
         return userkeyboardinput;
     }
-
+    public String getInputMessage()
+    {
+        return inputMessage;
+    }
+    
+    public static void setchoice(int choice)
+    {
+        inputchoice = choice;
+    }
+    public int getchoice()
+    {
+        return inputchoice;
+    }
+    
+    private ActionListener inputfile = new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            Plugboard.setchoice(1);
+        }
+    };
+    private ActionListener inputkeyboard = new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            Plugboard.setchoice(2);
+        }
+    };
 
     private ActionListener KB = new ActionListener()
     {
@@ -99,6 +129,7 @@ public class Plugboard extends JPanel
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Plugboard.setUserfileinput(input);
             System.out.println(input);
         }
     };
@@ -108,10 +139,10 @@ public class Plugboard extends JPanel
     public String getPlugboardText() {
       return plugboardstringin;
     }
+    
     public Plugboard()
     {
-        JRadioButton bfile = new JRadioButton("File");
-        JRadioButton bkey = new JRadioButton("Keyboard");
+        
         ButtonGroup bg = new ButtonGroup();
         JLabel jl4 = new JLabel("  Enter Plugboard Settings");
         JPanel vert2 = new JPanel();
