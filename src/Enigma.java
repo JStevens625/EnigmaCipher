@@ -7,6 +7,7 @@
  */
 public class Enigma {
 
+    String alpha = "abcdefghijklmnopqrstuvwxyz";
     private String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
     private String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
     private String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
@@ -87,11 +88,13 @@ public class Enigma {
         String part2;
         for (int i = 0; i < length; i++) {
             index = keyForInner.toString().indexOf(in.charAt(i));
-            index = keyForMid.toString().indexOf(keyForOuter.charAt(index));
-            encoded = encoded.replace(in.charAt(i), keyForOuter.charAt(index));
-            index = keyForInner.toString().toLowerCase().indexOf(in.charAt(i));
-            index = keyForMid.toString().toLowerCase().indexOf(keyForOuter.toString().toLowerCase().charAt(index));
-            encoded = encoded.replace(in.charAt(i), keyForOuter.toString().toLowerCase().charAt(index));
+            if (alpha.contains(in.substring(i, i))) {
+                index = keyForMid.toString().indexOf(keyForOuter.charAt(index));
+                encoded = encoded.replace(in.charAt(i), keyForOuter.charAt(index));
+                index = keyForInner.toString().toLowerCase().indexOf(in.charAt(i));
+                index = keyForMid.toString().toLowerCase().indexOf(keyForOuter.toString().toLowerCase().charAt(index));
+                encoded = encoded.replace(in.charAt(i), keyForOuter.toString().toLowerCase().charAt(index));
+            }
             count++;
             for (int j = 0; j < 26; j++) {
                 part1 = keyForInner.substring(1, 26);
@@ -155,12 +158,14 @@ public class Enigma {
         }
         count = 0;
         for (int i = 0; i < length; i++) {
-            index = keyForOuter.toString().indexOf(in.charAt(i));
-            index = keyForMid.toString().indexOf(keyForInner.charAt(index));
-            encoded = encoded.replace(in.charAt(i), keyForInner.charAt(index));
-            index = keyForOuter.toString().toLowerCase().indexOf(in.charAt(i));
-            index = keyForMid.toString().toLowerCase().indexOf(keyForInner.toString().toLowerCase().charAt(index));
-            encoded = encoded.replace(in.charAt(i), keyForInner.toString().toLowerCase().charAt(index));
+            if (alpha.contains(in.substring(i, i))) {
+                index = keyForOuter.toString().indexOf(in.charAt(i));
+                index = keyForMid.toString().indexOf(keyForInner.charAt(index));
+                encoded = encoded.replace(in.charAt(i), keyForInner.charAt(index));
+                index = keyForOuter.toString().toLowerCase().indexOf(in.charAt(i));
+                index = keyForMid.toString().toLowerCase().indexOf(keyForInner.toString().toLowerCase().charAt(index));
+                encoded = encoded.replace(in.charAt(i), keyForInner.toString().toLowerCase().charAt(index));
+            }
             count++;
             if (i < length - 1) {
                 for (int j = 0; j < 26; j++) {
@@ -230,8 +235,8 @@ public class Enigma {
         String part2;
         for (int j = 0; j < 26; j++) {
             part1 = key.substring(start, 26);
-            part2 = key.substring(0,start);
-            key = new StringBuilder(part1+part2);
+            part2 = key.substring(0, start);
+            key = new StringBuilder(part1 + part2);
             System.out.println(key.toString());
         }
         return key;
