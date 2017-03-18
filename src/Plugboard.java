@@ -83,7 +83,7 @@ public class Plugboard extends JPanel
             jfc.setCurrentDirectory(Directory);
             int showup = jfc.showOpenDialog(jfc);
             file = jfc.getSelectedFile();
-            //InputStream is = new FileInputStream(file.toString());
+            InputStream is = new FileInputStream(file);
             String strung = file.toString();
             System.out.println(strung);
         }

@@ -37,6 +37,8 @@ public class Submit extends JPanel
 
 class SubmitListener implements ActionListener
 {
+    String finalencode;
+    String finaldecode;
     CipherWheels cw = new CipherWheels();
     Enigma en = new Enigma();
     private Plugboard inputPlugboard;
@@ -66,11 +68,12 @@ class SubmitListener implements ActionListener
                 OutputStreamWriter osw = new OutputStreamWriter(is);
                 Writer writing = new BufferedWriter(osw);
                 if (inputEncodeDecode.getSelect() == 1) {
-
-                    writing.write("");
+                    finalencode = en.encode(nameit, cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), 0, 0, 0, nameit);
+                    writing.write(finalencode);
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
-                    writing.write("");
+                    finaldecode = en.decode(nameit, 0, 0, 0, 0, 0, 0, nameit);
+                    writing.write(finaldecode);
                 }
                 writing.close();
                 JOptionPane.showMessageDialog(null, "Your message has encoded/decoded");
