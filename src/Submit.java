@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import javax.swing.JButton;
@@ -62,38 +63,55 @@ class SubmitListener implements ActionListener
                 System.out.println("Box 2: " + cw.getComboBoxValue(2));
                 System.out.println("Box 3: " + cw.getComboBoxValue(3));
                 System.out.println("Cipher 1 Selected Value: " + cw.getChipher(1));
+                System.out.println("Cipher 2 Selected Value: " + cw.getChipher(2));
+                System.out.println("Cipher 3 Selected Value: " + cw.getChipher(3));
                 System.out.println("Plug Board Text Recieved: " + inputPlugboard.getPlugboardText());
                 System.err.println(inputPlugboard.getPlugboardText());
                 String nameit = JOptionPane.showInputDialog("What will the File name be?");
                 File statText = new File("src/Coded/" + nameit + ".txt");
                 FileOutputStream is = new FileOutputStream(statText);
-                OutputStreamWriter osw = new OutputStreamWriter(is);
-                Writer writing = new BufferedWriter(osw);
+                OutputStream os = new FileOutputStream(new File("src/Coded/" + nameit + ".txt"));
                 if (inputEncodeDecode.getSelect() == 1) {
                     if (pb.getchoice() == 1) {
-                        finalencode = en.encode(pb.getPlugboardText(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getUserfileinput());
-                        writing.write(finalencode);
+                        System.out.println(pb.getUserfileinput());
+                        finalencode = en.encode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
+                        char[] encodedString = finalencode.toCharArray();
+                        for (int i = 0; i < encodedString.length; i++) {
+                          os.write((char) encodedString[i]);
+                        }
                         System.out.println(finalencode);
                     }
                     else {
+                        System.out.println(pb.getUserkeyboardinput());
                         finalencode = en.encode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
-                        writing.write(finalencode);
+                        char[] encodedString = finalencode.toCharArray();
+                        for (int i = 0; i < encodedString.length; i++) {
+                          os.write((char) encodedString[i]);
+                        }
                         System.out.println(finalencode);
                     }
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
                     if (pb.getchoice() == 1) {
+                        System.out.println(pb.getUserfileinput());
                         finalencode = en.decode(pb.getUserfileinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
-                        writing.write(finaldecode);
+                        char[] encodedString = finalencode.toCharArray();
+                        for (int i = 0; i < encodedString.length; i++) {
+                          os.write((char) encodedString[i]);
+                        }
                         System.out.println(finaldecode);
                     }
                     else {
+                        System.out.println(pb.getUserkeyboardinput());
                         finalencode = en.decode(pb.getUserkeyboardinput(), cw.getComboBoxValue(1), cw.getComboBoxValue(2), cw.getComboBoxValue(3), cw.getChipher(1), cw.getChipher(2), cw.getChipher(3),pb.getPlugboardText());
-                        writing.write(finaldecode);
+                        char[] encodedString = finalencode.toCharArray();
+                        for (int i = 0; i < encodedString.length; i++) {
+                          os.write((char) encodedString[i]);
+                        }
                         System.out.println(finaldecode);
                     }
                 }
-                writing.close();
+                os.close();
                 JOptionPane.showMessageDialog(null, "Your message has encoded/decoded");
 
             }

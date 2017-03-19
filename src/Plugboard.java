@@ -54,7 +54,7 @@ public class Plugboard extends JPanel
     {
         inputMessage = e;
     }
-    
+
 
     public String getUserfileinput()
     {
@@ -68,7 +68,7 @@ public class Plugboard extends JPanel
     {
         return inputMessage;
     }
-    
+
     public static void setchoice(int choice)
     {
         inputchoice = choice;
@@ -77,7 +77,7 @@ public class Plugboard extends JPanel
     {
         return inputchoice;
     }
-    
+
     private ActionListener inputfile = new ActionListener()
     {
         public void actionPerformed(ActionEvent e)
@@ -127,7 +127,7 @@ public class Plugboard extends JPanel
                 Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
             }
             Plugboard.setUserfileinput(input);
-            System.out.println(input);
+            System.out.println("File Action Listener File Recieved: " + input);
         }
     };
     public static void setPlugboard(String plugboard) {
@@ -137,10 +137,10 @@ public class Plugboard extends JPanel
     public String getPlugboardText() {
       return plugboardstringin;
     }
-    
+
     public Plugboard()
     {
-        
+
         ButtonGroup bg = new ButtonGroup();
         JLabel jl4 = new JLabel("  Enter Plugboard Settings");
         JPanel vert2 = new JPanel();
