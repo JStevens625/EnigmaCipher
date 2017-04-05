@@ -1,13 +1,10 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -59,6 +56,7 @@ class SubmitListener implements ActionListener
                 JOptionPane.showMessageDialog(null, "Please Select encode or decode");
             }
             else {
+                en.keyCreation(cw.getChipher(1), cw.getChipher(2), cw.getChipher(3));
                 System.out.println("Box 1: " + cw.getComboBoxValue(1));
                 System.out.println("Box 2: " + cw.getComboBoxValue(2));
                 System.out.println("Box 3: " + cw.getComboBoxValue(3));
@@ -115,7 +113,6 @@ class SubmitListener implements ActionListener
                 JOptionPane.showMessageDialog(null, "Your message has encoded/decoded");
 
             }
-        } catch (IOException f) {
-        }
+        } catch (IOException f) {}
     }
 }

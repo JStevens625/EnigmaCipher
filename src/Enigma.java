@@ -89,11 +89,14 @@ public class Enigma {
         for (int i = 0; i < length; i++) {
             index = keyForInner.toString().indexOf(in.charAt(i));
             if (alpha.contains(in.substring(i, i))) {
-                index = keyForMid.toString().indexOf(keyForOuter.charAt(index));
+                //index = this.index;
+                //System.out.println(index);
+                index = keyForMid.toString().indexOf(keyForOuter.charAt(i));
                 encoded = encoded.replace(in.charAt(i), keyForOuter.charAt(index));
                 index = keyForInner.toString().toLowerCase().indexOf(in.charAt(i));
                 index = keyForMid.toString().toLowerCase().indexOf(keyForOuter.toString().toLowerCase().charAt(index));
                 encoded = encoded.replace(in.charAt(i), keyForOuter.toString().toLowerCase().charAt(index));
+                
             }
             count++;
             for (int j = 0; j < 26; j++) {
@@ -233,10 +236,11 @@ public class Enigma {
     public StringBuilder startPos(StringBuilder key, int start) {
         String part1;
         String part2;
+        System.out.println(key);
         for (int j = 0; j < 26; j++) {
-            part1 = key.substring(start, 26);
+            part1 = key.substring(start, 26);  
             part2 = key.substring(0, start);
-            key = new StringBuilder(part1 + part2);
+            key = new StringBuilder (part1 + part2);
             System.out.println(key.toString());
         }
         return key;
