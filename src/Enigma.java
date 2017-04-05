@@ -209,10 +209,10 @@ public class Enigma {
                 if (plugboard[i].contains(charseq)) {
                     indx = plugboard[i].indexOf(charseq.toString());
                     if (indx == 0) {
-                        encoded.setCharAt(i, plugboard[i].charAt(1));
+                        encoded.setCharAt(indx, plugboard[i].charAt(1));
                     } else {
                         if (indx == 1) {
-                            encoded.setCharAt(i, plugboard[i].charAt(0));
+                            encoded.setCharAt(indx, plugboard[i].charAt(0));
                         }
                     }
                 }
@@ -220,10 +220,10 @@ public class Enigma {
                 if (plugboard[i].toLowerCase().contains(charseq)) {
                     indx = plugboard[i].toLowerCase().indexOf(charseq.toString());
                     if (indx == 0) {
-                        encoded.setCharAt(i, plugboard[i].charAt(1));
+                        encoded.setCharAt(indx, plugboard[i].charAt(1));
                     } else {
                         if (indx == 1) {
-                            encoded.setCharAt(i, plugboard[i].charAt(0));
+                            encoded.setCharAt(indx, plugboard[i].charAt(0));
                         }
                     }
                 }
@@ -248,6 +248,7 @@ public class Enigma {
 
     public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
         String[] plugboard = plug.split(" ");
+        System.out.println(plugboard.length);
         int length = in.length();
         in = in.replaceAll(" ", "#");
         in = in.toLowerCase();
