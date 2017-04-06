@@ -260,6 +260,7 @@ public class Enigma {
         encoded = plugboard(plugboard, encoded);
         rotationEncode(length, index, in, encoded);
         encoded = plugboard(plugboard, encoded);
+        System.out.println(encoded);
         return encoded;
     }
 
