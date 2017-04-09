@@ -105,6 +105,8 @@ public class Plugboard extends JPanel
         //Found how to set default directory from here: http://stackoverflow.com/questions/5721504/jfilechooser-set-directory-to-a-path-in-a-file
         public void actionPerformed(ActionEvent e)
         {
+            jta.setWrapStyleWord(true);
+            jta.setLineWrap(true);
             File Directory = new File("src/Coded/");
             File file;
             JFileChooser jfc = new JFileChooser();
