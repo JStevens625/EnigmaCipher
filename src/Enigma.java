@@ -7,281 +7,143 @@
  */
 public class Enigma {
 
-    String alpha = "abcdefghijklmnopqrstuvwxyz";
     private String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
     private String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
     private String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
     private String key_4 = "KPHDEAC#VTWQMYNLXSURZOJFBGI";
     private String key_5 = "NDYGLQICVEZRPTAOXWBMJSUHK#F";
-    private StringBuilder keyForOuter;
-    private StringBuilder keyForMid;
-    private StringBuilder keyForInner;
-    private int index;
-
-    public void keyCreation(int wheel_I, int wheel_M, int wheel_O) {
-        if (wheel_O == 1) {
-            keyForOuter = new StringBuilder(key_1);
+    private String key_O;
+    private String key_M;
+    private String key_I;
+    
+public String assignKey(int keyNum) { //Sets selected key's string to the input key's position
+        String key = "";
+        if (keyNum == 1) { //If 1 is selected, set the key to key_1
+            key = key_1;
         } else {
-            if (wheel_O == 2) {
-                keyForOuter = new StringBuilder(key_2);
+            if (keyNum == 2) { //If 2 is selected, set the key to key_2
+                key = key_2;
             } else {
-                if (wheel_O == 3) {
-                    keyForOuter = new StringBuilder(key_3);
+                if (keyNum == 3) { //If 3 is selected, set the key to key_3
+                    key = key_3;
                 } else {
-                    if (wheel_O == 4) {
-                        keyForOuter = new StringBuilder(key_4);
+                    if (keyNum == 4) { //If 4 is selected, set the key to key_4
+                        key = key_4;
                     } else {
-                        if (wheel_O == 5) {
-                            keyForOuter = new StringBuilder(key_5);
+                        if (keyNum == 5) { //If 5 is selected, set the key to key_5
+                            key = key_5;
                         }
                     }
                 }
             }
-        }
-        if (wheel_M == 1) {
-            keyForMid = new StringBuilder(key_1);
-        } else {
-            if (wheel_M == 2) {
-                keyForMid = new StringBuilder(key_2);
-            } else {
-                if (wheel_M == 3) {
-                    keyForMid = new StringBuilder(key_3);
-                } else {
-                    if (wheel_M == 4) {
-                        keyForMid = new StringBuilder(key_4);
-                    } else {
-                        if (wheel_M == 5) {
-                            keyForMid = new StringBuilder(key_5);
-                        }
-                    }
-                }
-            }
-        }
-        if (wheel_I == 1) {
-            keyForInner = new StringBuilder(key_1);
-        } else {
-            if (wheel_I == 2) {
-                keyForInner = new StringBuilder(key_2);
-            } else {
-                if (wheel_I == 3) {
-                    keyForInner = new StringBuilder(key_3);
-                } else {
-                    if (wheel_I == 4) {
-                        keyForInner = new StringBuilder(key_4);
-                    } else {
-                        if (wheel_I == 5) {
-                            keyForInner = new StringBuilder(key_5);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void rotationEncode(int length, int index, String in, String encoded) {
-        int count = 0;
-        int rotate = 0;
-        int turn = 0;
-        char temporary;
-        char temp;
-        String part1;
-        String part2;
-        for (int i = 0; i < length; i++) {
-            index = keyForInner.toString().indexOf(in.charAt(i));
-            if (alpha.contains(in.substring(i, i))) {
-                //index = this.index;
-                //System.out.println(index);
-                index = keyForMid.toString().indexOf(keyForOuter.charAt(i));
-                encoded = encoded.replace(in.charAt(i), keyForOuter.charAt(index));
-                index = keyForInner.toString().toLowerCase().indexOf(in.charAt(i));
-                index = keyForMid.toString().toLowerCase().indexOf(keyForOuter.toString().toLowerCase().charAt(index));
-                encoded = encoded.replace(in.charAt(i), keyForOuter.toString().toLowerCase().charAt(index));
-                
-            }
-            count++;
-            for (int j = 0; j < 26; j++) {
-                part1 = keyForInner.substring(1, 26);
-                part2 = keyForInner.substring(0, 1);
-                keyForInner = new StringBuilder(part1 + part2);
-                System.out.println(keyForInner);
-            }
-            if (count % 27 == 0) {
-                rotate++;
-                for (int j = 0; j < 26; j++) {
-                    part1 = keyForMid.substring(1, 26);
-                    part2 = keyForMid.substring(0, 1);
-                    keyForMid = new StringBuilder(part1 + part2);
-                    System.out.println(keyForMid);
-                }
-            }
-            if (rotate % 27 == 0) {
-                for (int j = 0; j < 26; j++) {
-                    part1 = keyForOuter.substring(1, 26);
-                    part2 = keyForOuter.substring(0, 1);
-                    keyForOuter = new StringBuilder(part1 + part2);
-                    System.out.println(keyForOuter);
-                }
-            }
-        }
-    }
-
-    public void rotationDecode(int length, int index, String in, String encoded) {
-        int count = 0;
-        int rotate = 0;
-        int turn = 0;
-        char temporary;
-        char temp;
-        String part1;
-        String part2;
-        for (int i = 0; i < length; i++) {
-            count++;
-            for (int j = 0; j < 26; j++) {
-                part1 = keyForInner.substring(1, 26);
-                part2 = keyForInner.substring(0, 1);
-                keyForInner = new StringBuilder(part1 + part2);
-                System.out.println(keyForInner);
-            }
-            if (count % 27 == 0) {
-                rotate++;
-                for (int j = 0; j < 26; j++) {
-                    part1 = keyForMid.substring(1, 26);
-                    part2 = keyForMid.substring(0, 1);
-                    keyForMid = new StringBuilder(part1 + part2);
-                    System.out.println(keyForMid);
-                }
-            }
-            if (rotate % 27 == 0) {
-                for (int j = 0; j < 26; j++) {
-                    part1 = keyForOuter.substring(1, 26);
-                    part2 = keyForOuter.substring(0, 1);
-                    keyForOuter = new StringBuilder(part1 + part2);
-                    System.out.println(keyForOuter);
-                }
-            }
-        }
-        count = 0;
-        for (int i = 0; i < length; i++) {
-            if (alpha.contains(in.substring(i, i))) {
-                index = keyForOuter.toString().indexOf(in.charAt(i));
-                index = keyForMid.toString().indexOf(keyForInner.charAt(index));
-                encoded = encoded.replace(in.charAt(i), keyForInner.charAt(index));
-                index = keyForOuter.toString().toLowerCase().indexOf(in.charAt(i));
-                index = keyForMid.toString().toLowerCase().indexOf(keyForInner.toString().toLowerCase().charAt(index));
-                encoded = encoded.replace(in.charAt(i), keyForInner.toString().toLowerCase().charAt(index));
-            }
-            count++;
-            if (i < length - 1) {
-                for (int j = 0; j < 26; j++) {
-                    part1 = keyForInner.substring(1, 26);
-                    part2 = keyForInner.substring(0, 1);
-                    keyForInner = new StringBuilder(part1 + part2);
-                    System.out.println(keyForInner);
-                }
-                if (count % 27 == 0) {
-                    rotate++;
-                    for (int j = 0; j < 26; j++) {
-                        part1 = keyForMid.substring(1, 26);
-                        part2 = keyForMid.substring(0, 1);
-                        keyForMid = new StringBuilder(part1 + part2);
-                        System.out.println(keyForMid);
-                    }
-                }
-                if (rotate % 27 == 0) {
-                    for (int j = 0; j < 26; j++) {
-                        part1 = keyForOuter.substring(1, 26);
-                        part2 = keyForOuter.substring(0, 1);
-                        keyForOuter = new StringBuilder(part1 + part2);
-                        System.out.println(keyForOuter);
-                    }
-                }
-            }
-        }
-    }
-
-    public String plugboard(String[] plugboard, String code) {
-        int indx;
-        StringBuilder encoded = new StringBuilder(code);
-        for (int i = 0; i < plugboard.length; i++) {
-            for (int j = 0; j < code.length(); j++) {
-                char[] arr = new char[1];
-                arr[0] = code.charAt(j);
-                CharSequence charseq = new String(arr);
-                if (plugboard[i].contains(charseq)) {
-                    indx = plugboard[i].indexOf(charseq.toString());
-                    if (indx == 0) {
-                        encoded.setCharAt(indx, plugboard[i].charAt(1));
-                    } else {
-                        if (indx == 1) {
-                            encoded.setCharAt(indx, plugboard[i].charAt(0));
-                        }
-                    }
-                }
-                charseq = new String(arr);
-                if (plugboard[i].toLowerCase().contains(charseq)) {
-                    indx = plugboard[i].toLowerCase().indexOf(charseq.toString());
-                    if (indx == 0) {
-                        encoded.setCharAt(indx, plugboard[i].charAt(1));
-                    } else {
-                        if (indx == 1) {
-                            encoded.setCharAt(indx, plugboard[i].charAt(0));
-                        }
-                    }
-                }
-            }
-        }
-        code = encoded.toString();
-        return code;
-    }
-
-    public StringBuilder startPos(StringBuilder key, int start) {
-        String part1;
-        String part2;
-        System.out.println(key);
-        for (int j = 0; j < 26; j++) {
-            part1 = key.substring(start, 26);  
-            part2 = key.substring(0, start);
-            key = new StringBuilder (part1 + part2);
-            System.out.println(key.toString());
         }
         return key;
     }
 
-    public String encode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
-        String[] plugboard = plug.split(" ");
-        System.out.println(plugboard.length);
-        int length = in.length();
-        in = in.replaceAll(" ", "#");
-        in = in.toLowerCase();
-        keyForInner = startPos(keyForInner, start1);
-        keyForMid = startPos(keyForMid, start2);
-        keyForOuter = startPos(keyForOuter, start3);
-        String encoded = in;
-        keyCreation(wheel_I, wheel_M, wheel_O);
-        encoded = plugboard(plugboard, encoded);
-        rotationEncode(length, index, in, encoded);
-        encoded = plugboard(plugboard, encoded);
-        System.out.println(encoded);
-        return encoded;
+    public String startPos(String key, int position) {
+        int end = key.length();
+        String part1 = key.substring(0, position); //Takes everything before the start position
+        String part2 = key.substring(position, end); //Takes everything after the start position
+        key = part2 + part1; //Puts the start position as the first character, and puts the original start position after the original last character
+        return key;
     }
 
-    public String decode(String in, int start1, int start2, int start3, int wheel_I, int wheel_M, int wheel_O, String plug) {
-        String[] plugboard = plug.split(" ");
-        int length = 0;
-        if(in == null){
-            System.out.println("ahhhhhhhhhh");
-        }else{
-        length = in.length();
+    public String[] plugboardIn(String plugboard) {
+        plugboard = plugboard.toUpperCase();
+        String[] plug = plugboard.split(" "); //Splits the plugboard input by spaces and creates an array of two character long strings
+        return plug;
+    }
+
+    public String plugboard(String text, String[] plug) {
+        while (text != null) {
+            int length = text.length();
+            for (int i = 0; i < length; i++) {//For all characters
+                char ch = text.charAt(i);//Set ch to the character at the index
+                for (int j = 0; j < 10; j++) {//For all indexes in the plugboard array, check...
+                    if (ch == plug[j].charAt(0)) {//...if ch is the character at index 0 in the string at index j.
+                        text = text.substring(0, i) + plug[j].charAt(1) + text.substring(i + 1);//replace the character at index 0 with the character at index 1
+                    }
+                    if (ch == plug[j].toLowerCase().charAt(0)) {//...if ch is the lowercase character at index 0 in the string at index j.
+                        text = text.substring(0, i) + plug[j].toLowerCase().charAt(1) + text.substring(i + 1);//replace the character at index 0 with the character at index 1
+                    } else {// And if not, ...
+                        if (ch == plug[j].charAt(1)) {//...if ch is the character at index 1 in the string at index j
+                            text = text.substring(0, i) + plug[j].charAt(0) + text.substring(i + 1);//replace the character at index 1 with the character at index 0
+                        }
+                        if (ch == plug[j].toLowerCase().charAt(1)) {//...if ch is the lowercase character at index 1 in the string at index j
+                            text = text.substring(0, i) + plug[j].toLowerCase().charAt(0) + text.substring(i + 1);//replace the character at index 1 with the character at index 0
+                        }
+                    }
+                }
+            }
         }
-        in = in.replaceAll("#", " ");
-        in = in.toLowerCase();
-        keyForInner = startPos(keyForInner, start1);
-        keyForMid = startPos(keyForMid, start2);
-        keyForOuter = startPos(keyForOuter, start3);
-        String decoded = in;
-        keyCreation(wheel_I, wheel_M, wheel_O);
-        decoded = plugboard(plugboard, decoded);
-        rotationDecode(length, index, in, decoded);
-        decoded = plugboard(plugboard, decoded);
-        return decoded;
+        return text;
+    }
+
+    public String rotationForward(String key) {
+        String part1 = key.substring(25);
+        String part2 = key.substring(0, 25);
+        key = part1 + part2;
+        return key;
+    }
+
+    public String rotationBackward(String key) {
+        String part1 = key.substring(1);
+        String part2 = key.substring(0, 1);
+        key = part1 + part2;
+        return key;
+    }
+
+    public String encode(String text, String plugboard) {
+        
+        int length = text.length();
+        text = plugboard(text, plugboardIn(plugboard));
+        for (int i = 0; i < length; i++) {
+            char ch = text.charAt(i);//Set ch to the character at the index
+            for (int j = 0; j < 27; j++) {
+                if (ch == key_I.charAt(j)) {
+                    text = text.substring(0, i) + key_O.charAt(key_M.indexOf(key_O.charAt(j))) + text.substring(i + 1);
+                }
+            }
+            key_I = rotationForward(key_I);
+            if (i % 27 == 0) {
+                key_M = rotationForward(key_M);
+                if (i % 729 == 0) {
+                    key_O = rotationForward(key_O);
+                }
+            }
+        }
+        text = plugboard(text, plugboardIn(plugboard));
+        return text;
+    }
+    public String decode(String text, String plugboard) {
+        
+        int length = text.length();
+        for (int i = 0; i < length; i++) {
+            key_I = rotationForward(key_I);
+            if (i % 27 == 0) {
+                key_M = rotationForward(key_M);
+                if (i % 729 == 0) {
+                    key_O = rotationForward(key_O);
+                }
+            }
+        }
+        text = plugboard(text, plugboardIn(plugboard));
+        for (int i = length-1; i >= 0; i--) {
+            char ch = text.charAt(i);//Set ch to the character at the index
+            for (int j = 0; j < 27; j++) {
+                if (ch == key_O.charAt(j)) {
+                    text = text.substring(0, i) + key_I.charAt(key_O.indexOf(key_M.charAt(j))) + text.substring(i + 1);
+                }
+            }
+            key_I = rotationBackward(key_I);
+            if (i % 27 == 0) {
+                key_M = rotationBackward(key_M);
+                if (i % 729 == 0) {
+                    key_O = rotationBackward(key_O);
+                }
+            }
+        }
+        text = plugboard(text, plugboardIn(plugboard));
+        return text;
     }
 }
