@@ -93,8 +93,13 @@ public String assignKey(int keyNum) { //Sets selected key's string to the input 
         return key;
     }
 
-    public String encode(String text, String plugboard) {
-        
+    public String encode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
+        key_O = assignKey(keyNum_O);
+        key_M = assignKey(keyNum_M);
+        key_I = assignKey(keyNum_I);
+        key_O = startPos(key_O, keyPos_O);
+        key_M = startPos(key_M, keyPos_M);
+        key_I = startPos(key_I, keyPos_I);
         int length = text.length();
         text = plugboard(text, plugboardIn(plugboard));
         for (int i = 0; i < length; i++) {
@@ -115,8 +120,13 @@ public String assignKey(int keyNum) { //Sets selected key's string to the input 
         text = plugboard(text, plugboardIn(plugboard));
         return text;
     }
-    public String decode(String text, String plugboard) {
-        
+    public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
+        key_O = assignKey(keyNum_O);
+        key_M = assignKey(keyNum_M);
+        key_I = assignKey(keyNum_I);
+        key_O = startPos(key_O, keyPos_O);
+        key_M = startPos(key_M, keyPos_M);
+        key_I = startPos(key_I, keyPos_I);
         int length = text.length();
         for (int i = 0; i < length; i++) {
             key_I = rotationForward(key_I);
