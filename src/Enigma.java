@@ -121,6 +121,7 @@ public class Enigma {
                         key_O = rotationForward(key_O);
                     }
                 }
+                System.out.println(i);
             }
             else{
                 System.out.println("here i am!");
@@ -167,6 +168,7 @@ public class Enigma {
                         key_O = rotationBackward(key_O);
                     }
                 }
+                System.out.println(i);
             }
             else{
                 System.out.println("here i am!");
