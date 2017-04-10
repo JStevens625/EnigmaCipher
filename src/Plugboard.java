@@ -6,10 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -25,13 +23,13 @@ import javax.swing.JTextArea;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Jacob Stevens
  */
 public class Plugboard extends JPanel
 {
+
     JRadioButton bfile = new JRadioButton("File");
     JRadioButton bkey = new JRadioButton("Keyboard");
     private static String userfileinput;
@@ -39,12 +37,13 @@ public class Plugboard extends JPanel
     private static String plugboardstringin;
     private static String inputMessage;
     private static int inputchoice = 0;
-    JTextArea jta = new JTextArea(5,3);
+    JTextArea jta = new JTextArea(5, 3);
 
     public static void setUserfileinput(String e)
     {
         userfileinput = e;
     }
+
     public static void setUserkeyboardinput(String e)
     {
         userkeyboardinput = e;
@@ -55,15 +54,16 @@ public class Plugboard extends JPanel
         inputMessage = e;
     }
 
-
     public String getUserfileinput()
     {
         return userfileinput;
     }
+
     public String getUserkeyboardinput()
     {
         return userkeyboardinput;
     }
+
     public String getInputMessage()
     {
         return inputMessage;
@@ -73,6 +73,7 @@ public class Plugboard extends JPanel
     {
         inputchoice = choice;
     }
+
     public int getchoice()
     {
         return inputchoice;
@@ -97,7 +98,7 @@ public class Plugboard extends JPanel
     {
         public void actionPerformed(ActionEvent e)
         {
-            userkeyboardinput = JOptionPane.showInputDialog(null,"What would you like to encode?");
+            userkeyboardinput = JOptionPane.showInputDialog(null, "What would you like to encode?");
         }
     };
     private ActionListener file = new ActionListener()
@@ -113,31 +114,33 @@ public class Plugboard extends JPanel
             jfc.setCurrentDirectory(Directory);
             int showup = jfc.showOpenDialog(jfc);
             file = jfc.getSelectedFile();
-            InputStream is;
+            FileReader is;
             String input = new String();
+            String filestring = file.getAbsolutePath();
             try {
-                is = new FileInputStream(file);
-                try {
-                    int c;
-                    while((c = is.read())!= -1) {
-                        input += (char) c;
-                    }
-                } catch (IOException ex) {
-                    Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
+                is = new FileReader(filestring);
+                while ((is.ready())) {
+                    char ch = (char) is.read();
                 }
-            } catch (FileNotFoundException ex) {
+                }catch (IOException ex) {
+                
+                Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
                 Logger.getLogger(Plugboard.class.getName()).log(Level.SEVERE, null, ex);
             }
             Plugboard.setUserfileinput(input);
             System.out.println("File Action Listener File Recieved: " + input);
         }
     };
-    public static void setPlugboard(String plugboard) {
-      plugboardstringin = plugboard;
+
+    public static void setPlugboard(String plugboard)
+    {
+        plugboardstringin = plugboard;
         //System.out.println(plugboardstringin);
     }
-    public String getPlugboardText() {
-      return plugboardstringin;
+
+    public String getPlugboardText()
+    {
+        return plugboardstringin;
     }
 
     public Plugboard()
@@ -165,7 +168,9 @@ public class Plugboard extends JPanel
     }
 }
 
-class kl implements KeyListener {
+class kl implements KeyListener
+{
+
     @Override
     public void keyTyped(KeyEvent ke)
     {
@@ -181,6 +186,6 @@ class kl implements KeyListener {
     @Override
     public void keyReleased(KeyEvent ke)
     {
-        Plugboard.setPlugboard(((JTextArea)ke.getSource()).getText());
+        Plugboard.setPlugboard(((JTextArea) ke.getSource()).getText());
     }
 }

@@ -112,7 +112,7 @@ public class Enigma {
         return text;
     }
 
-    public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
+    public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) { 
         text = text.replaceAll(" ", "#");
         text = text.toUpperCase();
         key_O = assignKey(keyNum_O);
