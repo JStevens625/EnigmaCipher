@@ -163,10 +163,10 @@ public class Enigma {
             if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
                 for (int j = 26; j >= 0; j--) {
                     if (ch == key_O.charAt(j)) {
-                        text = text.substring(0, i) + key_I.charAt(key_O.indexOf(key_M.charAt(j))) + text.substring(i + 1);
+                        text = text.substring(0, i) + key_M.charAt(key_O.indexOf(key_I.charAt(j))) + text.substring(i + 1);
                     }
                     if (ch == key_O.toLowerCase().charAt(j)) {
-                        text = text.substring(0, i) + key_I.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_M.toLowerCase().charAt(j))) + text.substring(i + 1);
+                        text = text.substring(0, i) + key_M.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_I.toLowerCase().charAt(j))) + text.substring(i + 1);
                     }
                 }
                 key_I = rotationBackward(key_I);
