@@ -172,7 +172,7 @@ public class Enigma {
             }
         }
         text = text.replaceAll("#", " ");
-        System.out.println(text + "hi");
+        System.out.println(text);
         return text;
     }
 }
