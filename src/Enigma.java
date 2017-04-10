@@ -66,9 +66,6 @@ public class Enigma {
                         if (ch == plug[j].charAt(1)) {//...if ch is the character at index 1 in the string at index j
                             ch = plug[j].charAt(0);//replace the character at index 1 with the character at index 0
                         }
-                        if (ch == plug[j].toLowerCase().charAt(1)) {//...if ch is the lowercase character at index 1 in the string at index j
-                            ch = plug[j].toLowerCase().charAt(0);//replace the character at index 1 with the character at index 0
-                        }
                     }
                 }
         } catch (Exception e) {
