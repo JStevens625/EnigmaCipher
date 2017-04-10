@@ -134,7 +134,7 @@ public class Plugboard extends JPanel
     };
     public static void setPlugboard(String plugboard) {
       plugboardstringin = plugboard;
-        System.out.println(plugboardstringin);
+        //System.out.println(plugboardstringin);
     }
     public String getPlugboardText() {
       return plugboardstringin;
@@ -167,13 +167,13 @@ class kl implements KeyListener {
     @Override
     public void keyTyped(KeyEvent ke)
     {
-        System.out.println("Key Typed: " + ke.getKeyChar());
+        //System.out.println("Key Typed: " + ke.getKeyChar());
     }
 
     @Override
     public void keyPressed(KeyEvent ke)
     {
-        System.out.println("Key Pressed: " + ke.getKeyChar());
+        //System.out.println("Key Pressed: " + ke.getKeyChar());
     }
 
     @Override
