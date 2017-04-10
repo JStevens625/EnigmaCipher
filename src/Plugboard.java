@@ -149,6 +149,8 @@ public class Plugboard extends JPanel
         vert2.setLayout(new GridLayout(7, 1));
         bkey.addActionListener(KB);
         bfile.addActionListener(file);
+        bkey.addActionListener(inputkeyboard);
+        bfile.addActionListener(inputfile);
         jta.addKeyListener(new kl());
         bg.add(bkey);
         bg.add(bfile);

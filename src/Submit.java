@@ -81,9 +81,7 @@ class SubmitListener implements ActionListener
                     }
                     else {
                         System.out.println(pb.getUserkeyboardinput());
-                        System.out.println("Before encode");
                         finalencode = en.encode(pb.getUserkeyboardinput(), pb.getPlugboardText(), cw.getChipher(3), cw.getChipher(2), cw.getChipher(1), cw.getComboBoxValue(3), cw.getComboBoxValue(2), cw.getComboBoxValue(1));
-                        System.out.println("After Decode");
                         char[] encodedString = finalencode.toCharArray();
                         for (int i = 0; i < encodedString.length; i++) {
                           os.write((char) encodedString[i]);
