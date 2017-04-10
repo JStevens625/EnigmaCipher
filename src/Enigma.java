@@ -7,6 +7,7 @@
  */
 public class Enigma {
 
+    private String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ#";
     private String key_1 = "GNUAHOVBIPWCJQXDKRY#ELSZFMT";
     private String key_2 = "EJ#OTYCHMRWAFKPUZDINSXBGLQV";
     private String key_3 = "BDFHJLNPRTVXZACEGI#KMOQSUWY";
@@ -15,8 +16,8 @@ public class Enigma {
     private String key_O;
     private String key_M;
     private String key_I;
-    
-public String assignKey(int keyNum) { //Sets selected key's string to the input key's position
+
+    public String assignKey(int keyNum) { //Sets selected key's string to the input key's position
         String key = "";
         if (keyNum == 1) { //If 1 is selected, set the key to key_1
             key = key_1;
@@ -104,22 +105,28 @@ public String assignKey(int keyNum) { //Sets selected key's string to the input 
         text = plugboard(text, plugboardIn(plugboard));
         for (int i = 0; i < length; i++) {
             char ch = text.charAt(i);//Set ch to the character at the index
-            for (int j = 0; j < 27; j++) {
-                if (ch == key_I.charAt(j)) {
-                    text = text.substring(0, i) + key_O.charAt(key_M.indexOf(key_O.charAt(j))) + text.substring(i + 1);
+            if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
+                for (int j = 0; j < 27; j++) {
+                    if (ch == key_I.charAt(j)) {
+                        text = text.substring(0, i) + key_O.charAt(key_M.indexOf(key_O.charAt(j))) + text.substring(i + 1);
+                    }
+                    if (ch == key_I.toLowerCase().charAt(j)) {
+                        text = text.substring(0, i) + key_O.toLowerCase().charAt(key_M.toLowerCase().indexOf(key_O.toLowerCase().charAt(j))) + text.substring(i + 1);
+                    }
                 }
-            }
-            key_I = rotationForward(key_I);
-            if (i % 27 == 0) {
-                key_M = rotationForward(key_M);
-                if (i % 729 == 0) {
-                    key_O = rotationForward(key_O);
+                key_I = rotationForward(key_I);
+                if (i % 27 == 0) {
+                    key_M = rotationForward(key_M);
+                    if (i % 729 == 0) {
+                        key_O = rotationForward(key_O);
+                    }
                 }
             }
         }
         text = plugboard(text, plugboardIn(plugboard));
         return text;
     }
+
     public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
         key_O = assignKey(keyNum_O);
         key_M = assignKey(keyNum_M);
@@ -138,20 +145,27 @@ public String assignKey(int keyNum) { //Sets selected key's string to the input 
             }
         }
         text = plugboard(text, plugboardIn(plugboard));
-        for (int i = length-1; i >= 0; i--) {
+        for (int i = length - 1; i >= 0; i--) {
+
             char ch = text.charAt(i);//Set ch to the character at the index
-            for (int j = 0; j < 27; j++) {
-                if (ch == key_O.charAt(j)) {
-                    text = text.substring(0, i) + key_I.charAt(key_O.indexOf(key_M.charAt(j))) + text.substring(i + 1);
+            if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
+                for (int j = 0; j < 27; j++) {
+                    if (ch == key_O.charAt(j)) {
+                        text = text.substring(0, i) + key_I.charAt(key_O.indexOf(key_M.charAt(j))) + text.substring(i + 1);
+                    }
+                    if (ch == key_O.toLowerCase().charAt(j)) {
+                        text = text.substring(0, i) + key_I.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_M.toLowerCase().charAt(j))) + text.substring(i + 1);
+                    }
+                }
+                key_I = rotationBackward(key_I);
+                if (i % 27 == 0) {
+                    key_M = rotationBackward(key_M);
+                    if (i % 729 == 0) {
+                        key_O = rotationBackward(key_O);
+                    }
                 }
             }
-            key_I = rotationBackward(key_I);
-            if (i % 27 == 0) {
-                key_M = rotationBackward(key_M);
-                if (i % 729 == 0) {
-                    key_O = rotationBackward(key_O);
-                }
-            }
+
         }
         text = plugboard(text, plugboardIn(plugboard));
         return text;
