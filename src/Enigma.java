@@ -110,13 +110,13 @@ public class Enigma {
             if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
                 plugboard(text.charAt(i), plugboardIn(plugboard));
                 for (int j = 0; j < 27; j++) {
-                    if (plugboard(ch, plugboardIn(plugboard)) == key_I.charAt(j)) {
+                    if (ch == key_I.charAt(j)) {
                         
-                        text = text.substring(0, i) + plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
+                        text = text.substring(0, i) + plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(key_I.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
-                    if (plugboard(ch, plugboardIn(plugboard)) == key_I.toLowerCase().charAt(j)) {
+                    if (ch == key_I.toLowerCase().charAt(j)) {
                         
-                        text = text.substring(0, i) + plugboard(key_O.toLowerCase().charAt(key_M.toLowerCase().indexOf(key_O.toLowerCase().charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
+                        text = text.substring(0, i) + plugboard(key_O.toLowerCase().charAt(key_M.toLowerCase().indexOf(key_O.toLowerCase().charAt(key_I.indexOf(plugboard(ch,plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
                 }
                 key_I = rotationForward(key_I);
@@ -155,11 +155,11 @@ public class Enigma {
             char ch = text.charAt(i);//Set ch to the character at the index
             if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
                 for (int j = 26; j >= 0; j--) {
-                    if (plugboard(ch, plugboardIn(plugboard)) == key_O.charAt(j)) {
-                        text = text.substring(0, i) + plugboard(key_M.charAt(key_O.indexOf(key_I.charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
+                    if (ch == key_O.charAt(j)) {
+                        text = text.substring(0, i) + plugboard(key_I.charAt(key_O.indexOf(key_M.charAt(key_O.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
-                    if (plugboard(ch, plugboardIn(plugboard)) == key_O.toLowerCase().charAt(j)) {
-                        text = text.substring(0, i) + plugboard(key_M.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_I.toLowerCase().charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
+                    if (ch == key_O.toLowerCase().charAt(j)) {
+                        text = text.substring(0, i) + plugboard(key_I.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_M.toLowerCase().charAt(key_O.indexOf(plugboard(ch,plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
                 }
                 key_I = rotationBackward(key_I);
