@@ -61,9 +61,10 @@ public class Enigma {
         
             
             int length = text.length();
+            int plugLength = plug.length;
             for (int i = 0; i < length; i++) {//For all characters
                 char ch = text.charAt(i);//Set ch to the character at the index
-                for (int j = 0; j < 10; j++) {//For all indexes in the plugboard array, check...
+                for (int j = 0; j < plugLength; j++) {//For all indexes in the plugboard array, check...
                     if (ch == plug[j].charAt(0)) {//...if ch is the character at index 0 in the string at index j.
                         text = text.substring(0, i) + plug[j].charAt(1) + text.substring(i + 1);//replace the character at index 0 with the character at index 1
                     }
@@ -124,7 +125,7 @@ public class Enigma {
                     }
                 }
                 key_I = rotationForward(key_I);
-                if (i % 27 == 0) {
+                if (i % 27 == 0 && i != 0) {
                     key_M = rotationForward(key_M);
                     if (i % 729 == 0) {
                         key_O = rotationForward(key_O);
@@ -148,7 +149,7 @@ public class Enigma {
         int length = text.length();
         for (int i = 0; i < length; i++) {
             key_I = rotationForward(key_I);
-            if (i % 27 == 0) {
+            if (i % 27 == 0 && i != 0) {
                 key_M = rotationForward(key_M);
                 if (i % 729 == 0) {
                     key_O = rotationForward(key_O);
@@ -169,7 +170,7 @@ public class Enigma {
                     }
                 }
                 key_I = rotationBackward(key_I);
-                if (i % 27 == 0) {
+                if (i % 27 == 0  && i != 0) {
                     key_M = rotationBackward(key_M);
                     if (i % 729 == 0) {
                         key_O = rotationBackward(key_O);
