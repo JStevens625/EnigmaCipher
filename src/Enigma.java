@@ -146,7 +146,7 @@ public class Enigma {
         key_O = startPos(key_O, keyPos_O);
         key_M = startPos(key_M, keyPos_M);
         key_I = startPos(key_I, keyPos_I);
-        int length = text.length();
+        int length = text.length()-1;
         for (int i = 0; i < length; i++) {
             key_I = rotationForward(key_I);
             if (i % 27 == 0 && i != 0) {
@@ -180,6 +180,7 @@ public class Enigma {
         }
         text = plugboard(text, plugboardIn(plugboard));
         text = text.replaceAll("#", " ");
+        System.out.println(text + "hi");
         return text;
     }
 }
