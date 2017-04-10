@@ -50,16 +50,16 @@ public class Enigma {
     }
 
     public String[] plugboardIn(String plugboard) {
-        
+
         plugboard = plugboard.toUpperCase();
         String[] plug = plugboard.split(" "); //Splits the plugboard input by spaces and creates an array of two character long strings
         return plug;
     }
 
     public String plugboard(String text, String[] plug) {
-        
-        
-            
+
+
+
             int length = text.length();
             int plugLength = plug.length;
             for (int i = 0; i < length; i++) {//For all characters
@@ -80,7 +80,7 @@ public class Enigma {
                     }
                 }
             }
-        
+
         return text;
     }
 
@@ -106,21 +106,21 @@ public class Enigma {
         key_O = startPos(key_O, keyPos_O);
         key_M = startPos(key_M, keyPos_M);
         key_I = startPos(key_I, keyPos_I);
-        
+
         int length = text.length();
         text = plugboard(text, plugboardIn(plugboard));
         for (int i = 0; i < length; i++) {
-            
+
             char ch = text.charAt(i);//Set ch to the character at the index
             if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
-                
+
                 for (int j = 0; j < 27; j++) {
                     if (ch == key_I.charAt(j)) {
-                        
+
                         text = text.substring(0, i) + key_O.charAt(key_M.indexOf(key_O.charAt(j))) + text.substring(i + 1);
                     }
                     if (ch == key_I.toLowerCase().charAt(j)) {
-                        
+
                         text = text.substring(0, i) + key_O.toLowerCase().charAt(key_M.toLowerCase().indexOf(key_O.toLowerCase().charAt(j))) + text.substring(i + 1);
                     }
                 }
@@ -180,7 +180,7 @@ public class Enigma {
         }
         text = plugboard(text, plugboardIn(plugboard));
         text = text.replaceAll("#", " ");
-        System.out.println(text + "hi");
+        System.out.println(text);
         return text;
     }
 }
