@@ -97,6 +97,7 @@ public class Enigma {
 
     public String encode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
         text = text.replaceAll(" ", "#");
+        text = text.toUpperCase();
         key_O = assignKey(keyNum_O);
         key_M = assignKey(keyNum_M);
         key_I = assignKey(keyNum_I);
@@ -131,6 +132,7 @@ public class Enigma {
 
     public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
         text = text.replaceAll(" ", "#");
+        text = text.toUpperCase();
         key_O = assignKey(keyNum_O);
         key_M = assignKey(keyNum_M);
         key_I = assignKey(keyNum_I);
