@@ -50,38 +50,33 @@ public class Enigma {
     }
 
     public String[] plugboardIn(String plugboard) {
-
+        
         plugboard = plugboard.toUpperCase();
         String[] plug = plugboard.split(" "); //Splits the plugboard input by spaces and creates an array of two character long strings
         return plug;
     }
 
-    public String plugboard(String text, String[] plug) {
-
-
-
-            int length = text.length();
+    public char plugboard(char ch, String[] plug) {
             int plugLength = plug.length;
-            for (int i = 0; i < length; i++) {//For all characters
-                char ch = text.charAt(i);//Set ch to the character at the index
+
                 for (int j = 0; j < plugLength; j++) {//For all indexes in the plugboard array, check...
                     if (ch == plug[j].charAt(0)) {//...if ch is the character at index 0 in the string at index j.
-                        text = text.substring(0, i) + plug[j].charAt(1) + text.substring(i + 1);//replace the character at index 0 with the character at index 1
+                        ch = plug[j].charAt(1);//replace the character at index 0 with the character at index 1
                     }
                     if (ch == plug[j].toLowerCase().charAt(0)) {//...if ch is the lowercase character at index 0 in the string at index j.
-                        text = text.substring(0, i) + plug[j].toLowerCase().charAt(1) + text.substring(i + 1);//replace the character at index 0 with the character at index 1
+                        ch = plug[j].toLowerCase().charAt(1);//replace the character at index 0 with the character at index 1
                     } else {// And if not, ...
                         if (ch == plug[j].charAt(1)) {//...if ch is the character at index 1 in the string at index j
-                            text = text.substring(0, i) + plug[j].charAt(0) + text.substring(i + 1);//replace the character at index 1 with the character at index 0
+                            ch = plug[j].charAt(0);//replace the character at index 1 with the character at index 0
                         }
                         if (ch == plug[j].toLowerCase().charAt(1)) {//...if ch is the lowercase character at index 1 in the string at index j
-                            text = text.substring(0, i) + plug[j].toLowerCase().charAt(0) + text.substring(i + 1);//replace the character at index 1 with the character at index 0
+                            ch = plug[j].toLowerCase().charAt(0);//replace the character at index 1 with the character at index 0
                         }
                     }
                 }
-            }
-
-        return text;
+            
+        
+        return ch;
     }
 
     public String rotationForward(String key) {
@@ -106,22 +101,22 @@ public class Enigma {
         key_O = startPos(key_O, keyPos_O);
         key_M = startPos(key_M, keyPos_M);
         key_I = startPos(key_I, keyPos_I);
-
+        
         int length = text.length();
-        text = plugboard(text, plugboardIn(plugboard));
+        
         for (int i = 0; i < length; i++) {
-
+            
             char ch = text.charAt(i);//Set ch to the character at the index
             if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
-
+                plugboard(text.charAt(i), plugboardIn(plugboard));
                 for (int j = 0; j < 27; j++) {
-                    if (ch == key_I.charAt(j)) {
-
-                        text = text.substring(0, i) + key_O.charAt(key_M.indexOf(key_O.charAt(j))) + text.substring(i + 1);
+                    if (plugboard(ch, plugboardIn(plugboard)) == key_I.charAt(j)) {
+                        
+                        text = text.substring(0, i) + plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
-                    if (ch == key_I.toLowerCase().charAt(j)) {
-
-                        text = text.substring(0, i) + key_O.toLowerCase().charAt(key_M.toLowerCase().indexOf(key_O.toLowerCase().charAt(j))) + text.substring(i + 1);
+                    if (plugboard(ch, plugboardIn(plugboard)) == key_I.toLowerCase().charAt(j)) {
+                        
+                        text = text.substring(0, i) + plugboard(key_O.toLowerCase().charAt(key_M.toLowerCase().indexOf(key_O.toLowerCase().charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
                 }
                 key_I = rotationForward(key_I);
@@ -133,7 +128,6 @@ public class Enigma {
                 }
             }
         }
-        text = plugboard(text, plugboardIn(plugboard));
         text = text.replaceAll("#", " ");
         return text;
     }
@@ -156,17 +150,16 @@ public class Enigma {
                 }
             }
         }
-        text = plugboard(text, plugboardIn(plugboard));
-        for (int i = length - 1; i >= 0; i--) {
+        for (int i = length; i >= 0; i--) {
 
             char ch = text.charAt(i);//Set ch to the character at the index
             if (alpha.contains(text.substring(i, i + 1)) || alpha.toLowerCase().contains(text.substring(i, i + 1))) {
                 for (int j = 26; j >= 0; j--) {
-                    if (ch == key_O.charAt(j)) {
-                        text = text.substring(0, i) + key_M.charAt(key_O.indexOf(key_I.charAt(j))) + text.substring(i + 1);
+                    if (plugboard(ch, plugboardIn(plugboard)) == key_O.charAt(j)) {
+                        text = text.substring(0, i) + plugboard(key_M.charAt(key_O.indexOf(key_I.charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
-                    if (ch == key_O.toLowerCase().charAt(j)) {
-                        text = text.substring(0, i) + key_M.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_I.toLowerCase().charAt(j))) + text.substring(i + 1);
+                    if (plugboard(ch, plugboardIn(plugboard)) == key_O.toLowerCase().charAt(j)) {
+                        text = text.substring(0, i) + plugboard(key_M.toLowerCase().charAt(key_O.toLowerCase().indexOf(key_I.toLowerCase().charAt(j))), plugboardIn(plugboard)) + text.substring(i + 1);
                     }
                 }
                 key_I = rotationBackward(key_I);
@@ -178,9 +171,8 @@ public class Enigma {
                 }
             }
         }
-        text = plugboard(text, plugboardIn(plugboard));
         text = text.replaceAll("#", " ");
-        System.out.println(text);
+        System.out.println(text + "hi");
         return text;
     }
 }
