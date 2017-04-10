@@ -82,6 +82,8 @@ public class Enigma {
 
     public String encode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
         text = text.replaceAll(" ", "#");
+        String caseSensitive = text;
+        char caseChar;
         text = text.toUpperCase();
         key_O = assignKey(keyNum_O);
         key_M = assignKey(keyNum_M);
@@ -95,8 +97,14 @@ public class Enigma {
         for (int i = 0; i < length; i++) {
 
             char ch = text.charAt(i);//Set ch to the character at the index
+            caseChar = caseSensitive.charAt(i);
             plugboard(text.charAt(i), plugboardIn(plugboard));
-            text = text.substring(0, i) + plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(key_I.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
+            
+            if(Character.isLowerCase(caseChar)){
+                text = text.substring(0, i) + Character.toLowerCase(plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(key_I.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard))) + text.substring(i + 1);
+            }else{
+                text = text.substring(0, i) + plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(key_I.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
+            }
             key_I = rotationForward(key_I);
             if (i % 27 == 0 && i != 0) {
                 key_M = rotationForward(key_M);
@@ -114,6 +122,8 @@ public class Enigma {
 
     public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
         text = text.replaceAll(" ", "#");
+        String caseSensitive = text;
+        char caseChar;
         text = text.toUpperCase();
         key_O = assignKey(keyNum_O);
         key_M = assignKey(keyNum_M);
@@ -134,7 +144,13 @@ public class Enigma {
         for (int i = length; i >= 0; i--) {
 
             char ch = text.charAt(i);//Set ch to the character at the index
-            text = text.substring(0, i) + plugboard(key_I.charAt(key_O.indexOf(key_M.charAt(key_O.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
+            caseChar = caseSensitive.charAt(i);
+            if(Character.isLowerCase(caseChar)){
+                text = text.substring(0, i) + Character.toLowerCase(plugboard(key_I.charAt(key_O.indexOf(key_M.charAt(key_O.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard))) + text.substring(i + 1);
+            }
+            else{
+                text = text.substring(0, i) + plugboard(key_I.charAt(key_O.indexOf(key_M.charAt(key_O.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
+            }
             key_I = rotationBackward(key_I);
             if (i % 27 == 0 && i != 0) {
                 key_M = rotationBackward(key_M);
@@ -142,9 +158,9 @@ public class Enigma {
                     key_O = rotationBackward(key_O);
                 }
             }
-            System.out.println("Decode O: " + key_O);
+            /*System.out.println("Decode O: " + key_O);
             System.out.println("Decode M: " + key_M);
-            System.out.println("Decode I: " + key_I);
+            System.out.println("Decode I: " + key_I);*/
         }
         text = text.replaceAll("#", " ");
         return text;
