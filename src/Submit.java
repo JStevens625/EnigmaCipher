@@ -71,7 +71,8 @@ class SubmitListener implements ActionListener
                 OutputStream os = new FileOutputStream(new File("src/Coded/" + nameit + ".txt"));
                 if (inputEncodeDecode.getSelect() == 1) {
                     if (pb.getchoice() == 1) {
-                        System.out.println(pb.getUserfileinput());
+                        System.out.println("Choice 1");
+                        //System.out.println(pb.getUserfileinput());
                         finalencode = en.encode(pb.getUserfileinput(), pb.getPlugboardText(), cw.getChipher(3), cw.getChipher(2), cw.getChipher(1), cw.getComboBoxValue(3), cw.getComboBoxValue(2), cw.getComboBoxValue(1));
                         char[] encodedString = finalencode.toCharArray();
                         for (int i = 0; i < encodedString.length; i++) {
@@ -80,7 +81,8 @@ class SubmitListener implements ActionListener
                         System.out.println(finalencode);
                     }
                     else {
-                        System.out.println(pb.getUserkeyboardinput());
+                        System.out.println("Choice 2");
+                        //System.out.println(pb.getUserkeyboardinput());
                         finalencode = en.encode(pb.getUserkeyboardinput(), pb.getPlugboardText(), cw.getChipher(3), cw.getChipher(2), cw.getChipher(1), cw.getComboBoxValue(3), cw.getComboBoxValue(2), cw.getComboBoxValue(1));
                         char[] encodedString = finalencode.toCharArray();
                         for (int i = 0; i < encodedString.length; i++) {
@@ -91,7 +93,8 @@ class SubmitListener implements ActionListener
                 }
                 else if (inputEncodeDecode.getSelect() == 2) {
                     if (pb.getchoice() == 1) {
-                        System.out.println(pb.getUserfileinput());
+                        System.out.println("Choice 3");
+                        //System.out.println(pb.getUserfileinput());
                         finaldecode = en.decode(pb.getUserfileinput(), pb.getPlugboardText(), cw.getChipher(3), cw.getChipher(2), cw.getChipher(1), cw.getComboBoxValue(3), cw.getComboBoxValue(2), cw.getComboBoxValue(1));
                         char[] encodedString = finaldecode.toCharArray();
                         for (int i = 0; i < encodedString.length; i++) {
@@ -100,7 +103,8 @@ class SubmitListener implements ActionListener
                         System.out.println(finaldecode);
                     }
                     else {
-                        System.out.println(pb.getUserkeyboardinput());
+                        System.out.println("Choice 4");
+                        //System.out.println(pb.getUserkeyboardinput());
                         finaldecode = en.decode(pb.getUserkeyboardinput(), pb.getPlugboardText(), cw.getChipher(3), cw.getChipher(2), cw.getChipher(1), cw.getComboBoxValue(3), cw.getComboBoxValue(2), cw.getComboBoxValue(1));
                         char[] encodedString = finaldecode.toCharArray();
                         for (int i = 0; i < encodedString.length; i++) {
