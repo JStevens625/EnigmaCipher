@@ -62,10 +62,7 @@ public class Enigma {
                 for (int j = 0; j < plugLength; j++) {//For all indexes in the plugboard array, check...
                     if (ch == plug[j].charAt(0)) {//...if ch is the character at index 0 in the string at index j.
                         ch = plug[j].charAt(1);//replace the character at index 0 with the character at index 1
-                    }
-                    if (ch == plug[j].toLowerCase().charAt(0)) {//...if ch is the lowercase character at index 0 in the string at index j.
-                        ch = plug[j].toLowerCase().charAt(1);//replace the character at index 0 with the character at index 1
-                    } else {// And if not, ...
+                    }else {// And if not, ...
                         if (ch == plug[j].charAt(1)) {//...if ch is the character at index 1 in the string at index j
                             ch = plug[j].charAt(0);//replace the character at index 1 with the character at index 0
                         }
