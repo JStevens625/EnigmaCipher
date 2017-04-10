@@ -124,7 +124,7 @@ public class Enigma {
                     }
                 }
                 key_I = rotationForward(key_I);
-                if (i % 27 == 0) {
+                if (i % 27 == 0 && i != 0) {
                     key_M = rotationForward(key_M);
                     if (i % 729 == 0) {
                         key_O = rotationForward(key_O);
@@ -148,7 +148,7 @@ public class Enigma {
         int length = text.length();
         for (int i = 0; i < length; i++) {
             key_I = rotationForward(key_I);
-            if (i % 27 == 0) {
+            if (i % 27 == 0 && i != 0) {
                 key_M = rotationForward(key_M);
                 if (i % 729 == 0) {
                     key_O = rotationForward(key_O);
@@ -169,7 +169,7 @@ public class Enigma {
                     }
                 }
                 key_I = rotationBackward(key_I);
-                if (i % 27 == 0) {
+                if (i % 27 == 0  && i != 0) {
                     key_M = rotationBackward(key_M);
                     if (i % 729 == 0) {
                         key_O = rotationBackward(key_O);
