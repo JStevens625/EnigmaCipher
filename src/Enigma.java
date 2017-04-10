@@ -122,6 +122,9 @@ public class Enigma {
                     }
                 }
             }
+            else{
+                System.out.println("here i am!");
+            }
         }
         text = plugboard(text, plugboardIn(plugboard));
         return text;
@@ -165,7 +168,9 @@ public class Enigma {
                     }
                 }
             }
-
+            else{
+                System.out.println("here i am!");
+            }
         }
         text = plugboard(text, plugboardIn(plugboard));
         return text;
