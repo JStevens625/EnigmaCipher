@@ -101,7 +101,7 @@ public class Enigma {
                 caseChar = caseSensitive.charAt(i);
                 plugboard(text.charAt(i), plugboardIn(plugboard));
 
-                if (Character.isLowerCase(caseChar)) {
+                if (Character.isLowerCase(caseChar) || caseChar == '#') {
                     text = text.substring(0, i) + Character.toLowerCase(plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(key_I.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard))) + text.substring(i + 1);
                 } else {
                     text = text.substring(0, i) + plugboard(key_O.charAt(key_M.indexOf(key_O.charAt(key_I.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
@@ -142,7 +142,7 @@ public class Enigma {
             char ch = text.charAt(i);//Set ch to the character at the index
             if (Character.isAlphabetic(ch)) {
                 caseChar = caseSensitive.charAt(i);
-                if (Character.isLowerCase(caseChar)) {
+                if (Character.isLowerCase(caseChar) || caseChar == '#') {
                     text = text.substring(0, i) + Character.toLowerCase(plugboard(key_I.charAt(key_O.indexOf(key_M.charAt(key_O.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard))) + text.substring(i + 1);
                 } else {
                     text = text.substring(0, i) + plugboard(key_I.charAt(key_O.indexOf(key_M.charAt(key_O.indexOf(plugboard(ch, plugboardIn(plugboard)))))), plugboardIn(plugboard)) + text.substring(i + 1);
