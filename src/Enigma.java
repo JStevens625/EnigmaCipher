@@ -115,12 +115,10 @@ public class Enigma {
                 }
             }
         }
-        text = text.replaceAll("#", " ");
         return text;
     }
 
     public String decode(String text, String plugboard, int keyNum_O, int keyNum_M, int keyNum_I, int keyPos_O, int keyPos_M, int keyPos_I) {
-        text = text.replaceAll(" ", "#");
         String caseSensitive = text;
         char caseChar;
         text = text.toUpperCase();
